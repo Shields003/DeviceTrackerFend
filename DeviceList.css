@@ -1,0 +1,64 @@
+.device-list-container {
+  margin: 50px;
+}
+
+.device-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.device-list li {
+  border: 1px solid #670c0c;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #dccccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.device-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.device-list li h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: #555;
+}
+
+.device-list li p {
+  margin: 0;
+  font-size: 16px;
+  color: #888;
+}
+
+.device-list li p:first-child {
+  font-weight: bold;
+}
+
+.device-list li p:last-child {
+  margin-top: 10px;
+}
+
+.device-list li p.status {
+  color: #fff;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.device-list li p.status.active {
+  background-color: #6aa84f;
+}
+
+.device-list li p.status.inactive {
+  background-color: #bf5e3f;
+}
+
+.device-list li p.status.disabled {
+  background-color: #2398d3;
+}
