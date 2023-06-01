@@ -135,7 +135,7 @@ const DatabaseInfo = () => {
   try {
     return (
       <StatusBox>
-        <h1>Database</h1>
+        <h1>User Info</h1>
         <h2>Total Devices: {totalDevices}</h2>
         <div onClick={openModal}>
           <ButtonStyle>
