@@ -89,7 +89,7 @@ const Dashboard = () => {
     <MainDiv>
       <PageStyle>
         <ParentContainer>
-          <ChildContainer>wowzers
+          <ChildContainer>
             <TotalDevices />
           </ChildContainer>
           <ChildContainer>
