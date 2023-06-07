@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
 
 const ModalHeader = styled.div`
   display: flex;

@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import { ThemeProvider } from "@emotion/react";
-import Navigation from "./Navigation/Navigation";
-import App from "./App";
-import DeviceDetail from "./DeviceDetails/DeviceDetail";
+import Navigation from "./navigation/navigation";
+import App from "./app";
+import DeviceDetail from "./deviceDetails/deviceDetail";
 // import DeviceList from "./components/DeviceList"
-import Dashboard from "./pages/Dashboard";
-import SearchPage from "./pages/SearchPage";
-import HomePage from "./pages/HomePage";
+import Dashboard from "./pages/dashboard";
+import SearchPage from "./pages/searchPage";
+import HomePage from "./pages/homePage";
+import axios from "axios";
+
+
+const cors = require("cors");
+
 
 const theme = {
   colors: {

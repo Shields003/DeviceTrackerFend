@@ -1,91 +1,69 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
-import { fetchMaaS360Data } from "./Maas360Data";
+import { fetchMaaS360Data } from "./maas360Data";
 import AppleIcon from "@mui/icons-material/Apple";
 
-const DeviceContainer = styled.li`
-  margin: 1rem 0;
-  padding: 1rem;
-  background-color: ${(props) => props.theme.colors.primary};
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  color: ${(props) => props.theme.colors.text};
-`;
-
-const DeviceName = styled.h1`
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: ${(props) => props.theme.colors.text};
-  text-align: center;
-`;
-
-const StatusText = styled.div`
-  font-size: 1.2rem;
-  text-align: center;
-  background-color: ${(props) => props.theme.colors.complementary1};
-  border: 1px solid ${(props) => props.theme.colors.complementary2};
-  border-radius: 8px;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  color: ${(props) => props.theme.colors.text};
-`;
-
 const StatusBox = styled.div`
-  font-size: 1.2rem;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  background-color: #f7f7f7;
+  padding: 2rem;
   border-radius: 8px;
-  background-color: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.text};
+  text-align: center;
+  min-width: 13vw;
+  max-width: 15vw;
+  min-height: 17vh;
+  max-height: 18vh;
+`;
+
+const Title = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 `;
 
 const ButtonStyle = styled.button`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.accent};
+  background-color: #fca311;
   border: none;
   border-radius: 8px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
-  color: ${(props) => props.theme.colors.text};
+  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  /* add styles specifically for the AppleIcon */
   .apple-icon {
     width: 1.5em;
     height: 1.5em;
     margin-right: 0.5rem;
-    color: ${(props) => props.theme.colors.complementary1};
+    color: #fff;
   }
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.complementary2};
+    background-color: #e76f51;
   }
 
   &:active {
-    background-color: ${(props) => props.theme.colors.complementary1};
+    background-color: #e76f51;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(255, 87, 34, 0.4);
+    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
   }
 `;
 
-const modalStyles = {
+const ModalStyles = {
   content: {
     top: "50%",
     left: "50%",
@@ -96,28 +74,48 @@ const modalStyles = {
     width: "60%",
     maxHeight: "83vh",
     overflowY: "auto",
-    background: "gray",
-    padding: "20px",
+    background: "#fff",
+    padding: "2rem",
+    borderRadius: "8px",
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.6)",
   },
 };
 
+const DeviceContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const Label = styled.span`
+  font-weight: bold;
+  margin-right: 1rem;
+`;
+
+const Value = styled.span``;
+
+const totalCompliant = 22371;
+const totalOutdated = 1745;
+const totalNonCompliant = 1246
 
 Modal.setAppElement("#root");
 
-function DeviceStatus() {
+const DeviceStatus = () => {
   const [devices, setDevices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
+ 
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const deviceData = await fetchMaaS360Data();
-        setDevices(deviceData);
+        const data = await fetchMaaS360Data();
+        setDevices(data.devices);
         setIsLoading(false);
       } catch (error) {
         setError(error.message);
@@ -142,33 +140,37 @@ function DeviceStatus() {
 
   return (
     <StatusBox>
-      <h1>Device Status</h1>
-      <h2>Total Devices: Placeholder</h2>
-      <div onClick={openModal}>
-        <ButtonStyle>
-          <AppleIcon className="mobile-icon" />
+      <Title>Device Status</Title>
+      <h2>Compliant Devices: 22741</h2>
+      <ButtonContainer>
+        <ButtonStyle onClick={openModal}>
+          <AppleIcon className="apple-icon" />
+          View Details
         </ButtonStyle>
-      </div>
+      </ButtonContainer>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={modalStyles}
+        style={ModalStyles}
         contentLabel="Device Status Modal"
       >
-        <DeviceName>Device Status</DeviceName>
-        <ul>
-          {devices.map((device) => (
-            <DeviceContainer key={device.ID}>
-              <DeviceName>{device.device_name}</DeviceName>
-              <StatusText>Status: {device.deviceStatus}</StatusText>
-            </DeviceContainer>
-          ))}
-        </ul>
+        <DeviceContainer>
+          <Label>Up-to-date:</Label>
+          <Value>{totalCompliant}</Value>
+        </DeviceContainer>
+        <DeviceContainer>
+          <Label>One Version Behind:</Label>
+          <Value>{totalOutdated}</Value>
+        </DeviceContainer>
+        <DeviceContainer>
+          <Label>Outdated:</Label>
+          <Value>{totalNonCompliant}</Value>
+        </DeviceContainer>
         <button onClick={closeModal}>Close</button>
       </Modal>
       {error && <div>Error: {error}</div>}
     </StatusBox>
   );
-}
+};
 
 export default DeviceStatus;

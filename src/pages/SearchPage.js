@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import SearchBar from "../components/SearchPageComponents/SearchBar";
-import SearchFilter from "../components/SearchPageComponents/SearchFilter";
-import FilterCheckbox from "../components/SearchPageComponents/FilterCheckbox";
+import SearchBar from "../components/searchPageComponents/searchBar";
+import SearchFilterUnit from "../components/searchPageComponents/searchFilterUnit";
+import FilterCheckbox from "../components/searchPageComponents/filterCheckbox";
+import SearchFilterStatus from "../components/searchPageComponents/searchFilterStatus";
+import SearchFilterType from "../components/searchPageComponents/searchFilterType";
 
 const MainDiv = styled.div`
   margin: 1rem;
@@ -73,13 +75,15 @@ const SearchPage = () => {
           setSearchTerm={setSearchTerm}
           handleSearch={handleSearch}
         />
-        <CheckboxRow>
-          <FilterCheckbox label="User Name" />
-          <FilterCheckbox label="Quarantined Devices" />
-          <FilterCheckbox label="OS Version" />
-          <FilterCheckbox label="Archived" />
-        </CheckboxRow>
-        <SearchFilter
+        <SearchFilterStatus
+          filterOption={filterOption}
+          handleFilterChange={handleFilterChange}
+        />
+        <SearchFilterType
+          filterOption={filterOption}
+          handleFilterChange={handleFilterChange}
+        />
+        <SearchFilterUnit
           filterOption={filterOption}
           handleFilterChange={handleFilterChange}
         />

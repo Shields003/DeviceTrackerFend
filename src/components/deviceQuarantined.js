@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { fetchMaaS360Data } from "./maas360Data";
-import AppleIcon from "@mui/icons-material/Apple";
 import Modal from "react-modal";
+import AppleIcon from "@mui/icons-material/Apple";
+import { fetchMaaS360Data } from "./maas360Data";
 
 const StatusBox = styled.div`
   background-color: #f7f7f7;
@@ -84,6 +84,8 @@ const ModalStyles = {
   },
 };
 
+Modal.setAppElement("#root");
+
 const DeviceContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -102,35 +104,23 @@ const Value = styled.span`
   color: #333;
 `;
 
-const TotalDevices = () => {
-  const [totalDevices, setTotalDevices] = useState(0);
-  const [totalIPads, setTotalIPads] = useState(0);
-  const [totalIPhones, setTotalIPhones] = useState(0);
-  const [totalMacBooks, setTotalMacBooks] = useState(0);
-  const [totalIMacs, setTotalIMacs] = useState(0);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+const totalQuarantined = 1412;
+
+const DeviceQuarantined = () => {
+  const [devices, setDevices] = useState([]);
   const [error, setError] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDevices() {
       try {
         const data = await fetchMaaS360Data();
-        setTotalDevices(data.total_devices);
-        setTotalIPads(data.total_ipads);
-        setTotalIPhones(data.total_iphones);
-        setTotalMacBooks(data.total_macbooks);
-        setTotalIMacs(data.total_imacs);
-        setTotalUsers(data.total_users);
-        setIsLoading(false);
+        setDevices(data);
       } catch (error) {
         setError(error.message);
-        setIsLoading(false);
       }
     }
-
-    fetchData();
+    fetchDevices();
   }, []);
 
   const openModal = () => {
@@ -141,57 +131,55 @@ const TotalDevices = () => {
     setIsOpen(false);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (error) {
+    return (
+      <StatusBox>
+        <div>Error: {error}</div>
+      </StatusBox>
+    );
   }
 
   return (
     <StatusBox>
-      <Title>Device Totals</Title>
-      <h2>Total Devices: {totalDevices}</h2>
-      <ButtonContainer>
-        <ButtonStyle onClick={openModal}>
-          <AppleIcon className="apple-icon" />
-          View Details
-        </ButtonStyle>
-      </ButtonContainer>
+      <Title>Quarantined Devices</Title>
+      <h2>Quarantined: {totalQuarantined}</h2>
+      <div onClick={openModal}>
+        <ButtonContainer>
+          <ButtonStyle onClick={openModal}>
+            <AppleIcon className="apple-icon" />
+            View Details
+          </ButtonStyle>
+        </ButtonContainer>
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={ModalStyles}
-        contentLabel="Device Status Modal"
+        contentLabel="Device List Modal"
       >
-        <div>
-          <DeviceContainer>
-            <Label>Total Devices:</Label>
-            <Value>{totalDevices}</Value>
-          </DeviceContainer>
-          <DeviceContainer>
-            <Label>Total iPads:</Label>
-            <Value>{totalIPads}</Value>
-          </DeviceContainer>
-          <DeviceContainer>
-            <Label>Total iPhones:</Label>
-            <Value>{totalIPhones}</Value>
-          </DeviceContainer>
-          <DeviceContainer>
-            <Label>Total MacBooks:</Label>
-            <Value>{totalMacBooks}</Value>
-          </DeviceContainer>
-          <DeviceContainer>
-            <Label>Total iMacs:</Label>
-            <Value>{totalIMacs}</Value>
-          </DeviceContainer>
-          <DeviceContainer>
-            <Label>Total Users:</Label>
-            <Value>{totalUsers}</Value>
-          </DeviceContainer>
-        </div>
+        <DeviceContainer>Device List</DeviceContainer>
+        <ul>
+          {Array.isArray(devices) && devices.length > 0 ? (
+            devices.map((device) => (
+              <DeviceContainer key={device.id}>
+                <Label>Device Name</Label>
+                <Value>{device.value}</Value>
+                <Label>Status: </Label>
+                <Value>{device.status}</Value>
+                <Label>ID: </Label>
+                <Value>{device.id}</Value>
+                <Label>OS: </Label>
+                <Value>{device.os}</Value>
+              </DeviceContainer>
+            ))
+          ) : (
+            <h1>No devices found.</h1>
+          )}
+        </ul>
         <button onClick={closeModal}>Close</button>
       </Modal>
-      {error && <div>Error: {error}</div>}
     </StatusBox>
   );
 };
 
-export default TotalDevices;
+export default DeviceQuarantined;

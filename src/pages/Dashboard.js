@@ -1,22 +1,42 @@
+//Library imports
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import DeviceList from "../components/DeviceList";
-import DeviceStatus from "../components/DeviceStatus";
-// import { FaMobileAlt } from "react-icons/fa";
-// import Pagination from "../components/DashboardComponents/Pagination";
-import ModalContent from "../components/DashboardComponents/ModalContent";
-import TotalDevices from "../components/TotalDevices";
-import DatabaseInfo from "../components/DatabaseInfo";
 
+// Local imports
+import DeviceStatus from "../components/deviceStatus";
+import TotalDevices from "../components/totalDevices";
+import DatabaseInfo from "../components/dashboardComponents/databaseInfo";
+import DeviceQuarantined from "../components/deviceQuarantined";
+import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
+import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
+import Gauges from "../components/dashboardComponents/charts/statusGuages";
+import PieModal from "../components/dashboardComponents/modals/pieModal";
+import LineModal from "../components/dashboardComponents/modals/lineModal";
+
+const theme = {
+  colors: {
+    primary: "#284b63",
+    complementary1: "#3c6e71",
+    complementary2: "#d9d9d9",
+    accent: "#1985a1",
+    dark: "#353535",
+    text: "#ffffff",
+    alert: "#eb5e28",
+  },
+};
+
+
+
+//Styled components
 const ParentContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   margin: 1rem;
   border: 3px solid ${(props) => props.theme.primaryColor};
   border-radius: 10px;
-  max-width: 70vw;
+  max-width: 80vw;
   max-height: 70vh;
 `;
 
@@ -29,60 +49,103 @@ const ChildContainer = styled.div`
   align-items: center;
 `;
 
-// const MobileIcon = styled(FaMobileAlt)`
-//   font-size: 3rem;
-//   color: ${(props) => props.theme.primaryColor};
-//   cursor: pointer;
-// `;
-
 const MainDiv = styled.div`
   margin: 1rem;
-  padding-top: 5rem;
+  padding-top: 8rem;
 `;
 
 const PageStyle = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   border-radius: 10px;
   background-color: ${(props) => props.theme.primaryColor};
   height: 100%;
 `;
 
-// const Filter = styled.div`
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-//   margin: 1rem;
-//   border: 3px solid ${(props) => props.theme.primaryColor};
-//   border-radius: 10px;
-//   max-width: 100vw;
-//   max-height: 20vh;
-// `;
-
 const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); // semi-transparent black
 `;
 
 const ModalContentContainer = styled.div`
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
+  background-color: ${theme.colors.complementary1};
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%; // larger modal
+  max-width: 900px; // limit the width
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const Dashboard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Button = styled.button`
+  background: ${theme.colors.primary};
+  color: ${theme.colors.text};
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover {
+    background: ${theme.colors.accent};
+  }
+`;
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+// Style your modal
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: ${theme.colors.complementary2};
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ChartContainer = styled.div`
+  width: 500px;
+  height: 500px;
+`;
+
+//Main component
+const Dashboard = () => {
+  const [isPieModalOpen, setIsPieModalOpen] = useState(false);
+  const [isLineModalOpen, setIsLineModalOpen] = useState(false);
+
+  const openPieModal = () => {
+    setIsPieModalOpen(true);
+  };
+
+  const closePieModal = () => {
+    setIsPieModalOpen(false);
+  };
+
+  const openLineModal = () => {
+    setIsLineModalOpen(true);
+  };
+
+  const closeLineModal = () => {
+    setIsLineModalOpen(false);
   };
 
   return (
@@ -96,20 +159,26 @@ const Dashboard = () => {
             <DeviceStatus />
           </ChildContainer>
           <ChildContainer>
-            <DeviceList />
+            <DeviceQuarantined />
           </ChildContainer>
           <ChildContainer>
             <DatabaseInfo />
           </ChildContainer>
         </ParentContainer>
       </PageStyle>
-      {isModalOpen && (
-        <ModalContainer>
-          <ModalContentContainer>
-            <ModalContent onClose={toggleModal} />
-          </ModalContentContainer>
-        </ModalContainer>
-      )}
+      <PageStyle>
+        <ParentContainer>
+          <ChildContainer>
+            <PieChartTotals />
+          </ChildContainer>
+          <ChildContainer>
+            <Gauges />
+          </ChildContainer>
+          <ChildContainer>
+            <LineChartUnitCompliance />
+          </ChildContainer>
+        </ParentContainer>
+      </PageStyle>
     </MainDiv>
   );
 };

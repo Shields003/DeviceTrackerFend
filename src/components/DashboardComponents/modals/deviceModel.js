@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
-// import { FaMobileAlt } from "react-icons/fa";
+import { css } from "@emotion/react";
+import { FaMobileAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
+import { fetchMaaS360Data } from "../../maas360Data";
 import Modal from "react-modal";
 import AppleIcon from "@mui/icons-material/Apple";
-import { fetchMaaS360Data } from "./Maas360Data";
+import CloseIcon from "@mui/icons-material/Close";
 
 const DeviceContainer = styled.li`
   margin: 1rem 0;
   padding: 1rem;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: cadetblue;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  color: ${(props) => props.theme.colors.text};
 `;
 
 const DeviceName = styled.h2`
@@ -28,7 +29,7 @@ const DeviceName = styled.h2`
 const StatusText = styled.div`
   font-size: 1.2rem;
   text-align: center;
-  background-color: ${(props) => props.theme.secondaryColor};
+  background-color: #42f5d4;
   border: 1px solid black;
   border-radius: 8px;
   padding: 0.5rem;
@@ -43,8 +44,6 @@ const StatusBox = styled.div`
   margin: 0.5rem;
   padding: 0.5rem;
   border-radius: 8px;
-  background-color: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.text};
 `;
 
 const ButtonStyle = styled.button`
@@ -52,37 +51,44 @@ const ButtonStyle = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.accent};
+  background-color: ${props => props.theme.primaryColor};
   border: none;
   border-radius: 8px;
   padding: 0.5rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
-  color: ${(props) => props.theme.colors.text};
+  color: white;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  /* add styles specifically for the AppleIcon */
+  /* add styles specifically for the FaApple icon */
   .apple-icon {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1em;
+    height: 1em;
     margin-right: 0.5rem;
-    color: ${(props) => props.theme.colors.complementary1};
   }
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.complementary2};
+    background-color: #0061a8;
   }
 
   &:active {
-    background-color: ${(props) => props.theme.colors.complementary1};
+    background-color: #00508f;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(255, 87, 34, 0.4);
+    box-shadow: 0px 0px 0px 3px rgba(0, 113, 197, 0.4);
   }
+`;
+
+const CloseButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: ${props => props.theme.primaryColor};
+  font-size: 1.2rem;
+  cursor: pointer;
 `;
 
 const modalStyles = {
@@ -96,7 +102,7 @@ const modalStyles = {
     width: "60%",
     maxHeight: "83vh",
     overflowY: "auto",
-    background: "gray",
+    background: props => props.theme.secondaryColor,
     padding: "20px",
   },
   overlay: {
@@ -104,9 +110,10 @@ const modalStyles = {
   },
 };
 
+
 Modal.setAppElement("#root");
 
-const DatabaseInfo = () => {
+function DeviceModel() {
   const [devices, setDevices] = useState([]);
   const [error, setError] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -115,11 +122,17 @@ const DatabaseInfo = () => {
     async function fetchDevices() {
       try {
         const data = await fetchMaaS360Data();
-        setDevices(data);
+        if (data) {
+          setDevices(data);
+        } else {
+          setDevices([]);
+        }
       } catch (error) {
         setError(error.message);
+        setDevices([]);
       }
     }
+
     fetchDevices();
   }, []);
 
@@ -131,39 +144,39 @@ const DatabaseInfo = () => {
     setIsOpen(false);
   };
 
-  const totalDevices = devices.length;
-  try {
-    return (
-      <StatusBox>
-        <h1>User Info</h1>
-        <h2>Total Devices: {totalDevices}</h2>
-        <div onClick={openModal}>
-          <ButtonStyle>
-            <AppleIcon className="mobile-icon" />
-          </ButtonStyle>
-        </div>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={modalStyles}
-          contentLabel="Device List Modal"
-        >
-          <DeviceName>Device List</DeviceName>
-          <ul>
-            {Array.isArray(devices) &&
-              devices.map((device) => (
-                <DeviceContainer key={device.id}>
-                  <DeviceName>{device.name}</DeviceName>
-                  <StatusText>ID: {device.id}</StatusText>
-                  <StatusText>OS: {device.os}</StatusText>
-                </DeviceContainer>
-              ))}
-          </ul>
-          <button onClick={closeModal}>Close</button>
-        </Modal>
-      </StatusBox>
-    );
-  } catch (error) {}
-};
+  const totalDevices = devices ? devices.length : 0;
 
-export default DatabaseInfo;
+  return (
+    <StatusBox>
+      <h1>Device Model</h1>
+      <h2>Total Devices: {totalDevices}</h2>
+      <div onClick={openModal}>
+        <ButtonStyle>
+          <AppleIcon className="mobile-icon" />
+        </ButtonStyle>
+      </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={modalStyles}
+        contentLabel="Device Status Modal"
+      >
+        <CloseButton onClick={closeModal}>
+          <CloseIcon />
+        </CloseButton>
+        <DeviceName>Device Status</DeviceName>
+        <ul>
+          {devices.map((device) => (
+            <DeviceContainer key={device.ID}>
+              <DeviceName>{device.device_name}</DeviceName>
+              <StatusText>ID: {device.ID}</StatusText>
+              <StatusText>Model: {device.model}</StatusText>
+            </DeviceContainer>
+          ))}
+        </ul>
+      </Modal>
+    </StatusBox>
+  );
+}
+
+export default DeviceModel;
