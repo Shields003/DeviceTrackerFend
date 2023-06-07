@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import Modal from "react-modal";
-import { fetchMaaS360Data } from "./maas360Data";
+import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 import AppleIcon from "@mui/icons-material/Apple";
+import Modal from "react-modal";
 
 const StatusBox = styled.div`
   background-color: #f7f7f7;
@@ -92,30 +92,37 @@ const DeviceContainer = styled.div`
 `;
 
 const Label = styled.span`
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-right: 1rem;
+  color: #333;
 `;
 
-const Value = styled.span``;
+const Value = styled.span`
+  font-size: 1.2rem;
+  color: #333;
+`;
 
-const totalCompliant = 22371;
-const totalOutdated = 1745;
-const totalNonCompliant = 1246
-
-Modal.setAppElement("#root");
-
-const DeviceStatus = () => {
-  const [devices, setDevices] = useState([]);
+const TotalDevices = () => {
+  const [totalDevices, setTotalDevices] = useState(0);
+  const [totalIPads, setTotalIPads] = useState(0);
+  const [totalIPhones, setTotalIPhones] = useState(0);
+  const [totalMacBooks, setTotalMacBooks] = useState(0);
+  const [totalIMacs, setTotalIMacs] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
- 
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await fetchMaaS360Data();
-        setDevices(data.devices);
+        setTotalDevices(data.total_devices);
+        setTotalIPads(data.total_ipads);
+        setTotalIPhones(data.total_iphones);
+        setTotalMacBooks(data.total_macbooks);
+        setTotalIMacs(data.total_imacs);
+        setTotalUsers(data.total_users);
         setIsLoading(false);
       } catch (error) {
         setError(error.message);
@@ -140,8 +147,8 @@ const DeviceStatus = () => {
 
   return (
     <StatusBox>
-      <Title>Device Status</Title>
-      <h2>Compliant Devices: 22741</h2>
+      <Title>Device Totals</Title>
+      <h2>Total Devices: {totalDevices}</h2>
       <ButtonContainer>
         <ButtonStyle onClick={openModal}>
           <AppleIcon className="apple-icon" />
@@ -154,18 +161,32 @@ const DeviceStatus = () => {
         style={ModalStyles}
         contentLabel="Device Status Modal"
       >
-        <DeviceContainer>
-          <Label>Up-to-date:</Label>
-          <Value>{totalCompliant}</Value>
-        </DeviceContainer>
-        <DeviceContainer>
-          <Label>One Version Behind:</Label>
-          <Value>{totalOutdated}</Value>
-        </DeviceContainer>
-        <DeviceContainer>
-          <Label>Outdated:</Label>
-          <Value>{totalNonCompliant}</Value>
-        </DeviceContainer>
+        <div>
+          <DeviceContainer>
+            <Label>Total Devices:</Label>
+            <Value>{totalDevices}</Value>
+          </DeviceContainer>
+          <DeviceContainer>
+            <Label>Total iPads:</Label>
+            <Value>{totalIPads}</Value>
+          </DeviceContainer>
+          <DeviceContainer>
+            <Label>Total iPhones:</Label>
+            <Value>{totalIPhones}</Value>
+          </DeviceContainer>
+          <DeviceContainer>
+            <Label>Total MacBooks:</Label>
+            <Value>{totalMacBooks}</Value>
+          </DeviceContainer>
+          <DeviceContainer>
+            <Label>Total iMacs:</Label>
+            <Value>{totalIMacs}</Value>
+          </DeviceContainer>
+          <DeviceContainer>
+            <Label>Total Users:</Label>
+            <Value>{totalUsers}</Value>
+          </DeviceContainer>
+        </div>
         <button onClick={closeModal}>Close</button>
       </Modal>
       {error && <div>Error: {error}</div>}
@@ -173,4 +194,4 @@ const DeviceStatus = () => {
   );
 };
 
-export default DeviceStatus;
+export default TotalDevices;

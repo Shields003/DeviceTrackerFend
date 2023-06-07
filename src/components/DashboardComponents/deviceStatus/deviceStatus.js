@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { FaMobileAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
+import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 import AppleIcon from "@mui/icons-material/Apple";
-import { fetchMaaS360Data } from "../maas360Data";
-import axios from "axios";
-
 
 const StatusBox = styled.div`
   background-color: #f7f7f7;
@@ -87,8 +84,6 @@ const ModalStyles = {
   },
 };
 
-Modal.setAppElement("#root");
-
 const DeviceContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -97,31 +92,36 @@ const DeviceContainer = styled.div`
 `;
 
 const Label = styled.span`
-  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+  margin-right: 1rem;
 `;
 
-const Value = styled.span`
-  font-size: 1.2rem;
-  color: #333;
-`;
+const Value = styled.span``;
 
-function DatabaseInfo() {
-  const [data, setData] = useState([]);
+const totalCompliant = 22371;
+const totalOutdated = 1745;
+const totalNonCompliant = 1246
+
+Modal.setAppElement("#root");
+
+const DeviceStatus = () => {
+  const [devices, setDevices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
+ 
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/database-info"
-        );
-        setData(response.data);
+        const data = await fetchMaaS360Data();
+        setDevices(data.devices);
+        setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError(error.message);
+        setIsLoading(false);
       }
-    };
+    }
 
     fetchData();
   }, []);
@@ -134,44 +134,43 @@ function DatabaseInfo() {
     setIsOpen(false);
   };
 
-  const totalDevices = data.length;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <StatusBox>
-      <Title>Database Info</Title>
-      <h2>Total Devices: {totalDevices}</h2>
-      <div onClick={openModal}>
+      <Title>Device Status</Title>
+      <h2>Compliant Devices: 22741</h2>
       <ButtonContainer>
         <ButtonStyle onClick={openModal}>
           <AppleIcon className="apple-icon" />
           View Details
         </ButtonStyle>
       </ButtonContainer>
-      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={ModalStyles}
-        contentLabel="Database Info Modal"
+        contentLabel="Device Status Modal"
       >
-        <div>Database Info</div>
-        <ul>
-          {data.map((item) => (
-            <DeviceContainer key={item._id}>
-              <Label>Device ID: </Label>
-              <Value>{item.device_id}</Value>
-              <Label>Username: </Label>
-              <Value>{item.username}</Value>
-              <Label>Email: </Label>
-              <Value>{item.email}</Value>
-              {/* Add more fields as needed */}
-            </DeviceContainer>
-          ))}
-        </ul>
+        <DeviceContainer>
+          <Label>Up-to-date:</Label>
+          <Value>{totalCompliant}</Value>
+        </DeviceContainer>
+        <DeviceContainer>
+          <Label>One Version Behind:</Label>
+          <Value>{totalOutdated}</Value>
+        </DeviceContainer>
+        <DeviceContainer>
+          <Label>Outdated:</Label>
+          <Value>{totalNonCompliant}</Value>
+        </DeviceContainer>
         <button onClick={closeModal}>Close</button>
       </Modal>
+      {error && <div>Error: {error}</div>}
     </StatusBox>
   );
-}
+};
 
-export default DatabaseInfo;
+export default DeviceStatus;

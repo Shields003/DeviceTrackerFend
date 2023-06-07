@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+// import { FaMobileAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
 import AppleIcon from "@mui/icons-material/Apple";
-import { fetchMaaS360Data } from "./maas360Data";
+import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
+import axios from "axios";
+
 
 const StatusBox = styled.div`
   background-color: #f7f7f7;
@@ -104,23 +107,23 @@ const Value = styled.span`
   color: #333;
 `;
 
-const totalQuarantined = 1412;
-
-const DeviceQuarantined = () => {
-  const [devices, setDevices] = useState([]);
-  const [error, setError] = useState(null);
+function DatabaseInfo() {
+  const [data, setData] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    async function fetchDevices() {
+    const fetchData = async () => {
       try {
-        const data = await fetchMaaS360Data();
-        setDevices(data);
+        const response = await axios.get(
+          "http://localhost:5000/api/database-info"
+        );
+        setData(response.data);
       } catch (error) {
-        setError(error.message);
+        console.error("Error fetching data:", error);
       }
-    }
-    fetchDevices();
+    };
+
+    fetchData();
   }, []);
 
   const openModal = () => {
@@ -131,55 +134,44 @@ const DeviceQuarantined = () => {
     setIsOpen(false);
   };
 
-  if (error) {
-    return (
-      <StatusBox>
-        <div>Error: {error}</div>
-      </StatusBox>
-    );
-  }
+  const totalDevices = data.length;
 
   return (
     <StatusBox>
-      <Title>Quarantined Devices</Title>
-      <h2>Quarantined: {totalQuarantined}</h2>
+      <Title>Database Info</Title>
+      <h2>Total Devices: {totalDevices}</h2>
       <div onClick={openModal}>
-        <ButtonContainer>
-          <ButtonStyle onClick={openModal}>
-            <AppleIcon className="apple-icon" />
-            View Details
-          </ButtonStyle>
-        </ButtonContainer>
+      <ButtonContainer>
+        <ButtonStyle onClick={openModal}>
+          <AppleIcon className="apple-icon" />
+          View Details
+        </ButtonStyle>
+      </ButtonContainer>
       </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={ModalStyles}
-        contentLabel="Device List Modal"
+        contentLabel="Database Info Modal"
       >
-        <DeviceContainer>Device List</DeviceContainer>
+        <div>Database Info</div>
         <ul>
-          {Array.isArray(devices) && devices.length > 0 ? (
-            devices.map((device) => (
-              <DeviceContainer key={device.id}>
-                <Label>Device Name</Label>
-                <Value>{device.value}</Value>
-                <Label>Status: </Label>
-                <Value>{device.status}</Value>
-                <Label>ID: </Label>
-                <Value>{device.id}</Value>
-                <Label>OS: </Label>
-                <Value>{device.os}</Value>
-              </DeviceContainer>
-            ))
-          ) : (
-            <h1>No devices found.</h1>
-          )}
+          {data.map((item) => (
+            <DeviceContainer key={item._id}>
+              <Label>Device ID: </Label>
+              <Value>{item.device_id}</Value>
+              <Label>Username: </Label>
+              <Value>{item.username}</Value>
+              <Label>Email: </Label>
+              <Value>{item.email}</Value>
+              {/* Add more fields as needed */}
+            </DeviceContainer>
+          ))}
         </ul>
         <button onClick={closeModal}>Close</button>
       </Modal>
     </StatusBox>
   );
-};
+}
 
-export default DeviceQuarantined;
+export default DatabaseInfo;

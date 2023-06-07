@@ -1,12 +1,13 @@
 //Library imports
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import Footer from "../components/footer/footer";
 
 // Local imports
-import DeviceStatus from "../components/deviceStatus";
-import TotalDevices from "../components/totalDevices";
-import DatabaseInfo from "../components/dashboardComponents/databaseInfo";
-import DeviceQuarantined from "../components/deviceQuarantined";
+import DeviceStatus from "../components/dashboardComponents/deviceStatus/deviceStatus";
+import TotalDevices from "../components/dashboardComponents/deviceTotals/totalDevices";
+import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
+import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
 import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
 import Gauges from "../components/dashboardComponents/charts/statusGuages";
@@ -25,16 +26,14 @@ const theme = {
   },
 };
 
-
-
 //Styled components
 const ParentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 1rem;
-  border: 3px solid ${(props) => props.theme.primaryColor};
+  margin: 1.5rem;
+  padding: 1rem;
   border-radius: 10px;
   max-width: 80vw;
   max-height: 70vh;
@@ -47,6 +46,7 @@ const ChildContainer = styled.div`
   border-radius: 10px;
   background-color: ${(props) => props.theme.secondaryColor};
   align-items: center;
+  box-shadow: 10px 10px 5px grey;
 `;
 
 const MainDiv = styled.div`
@@ -127,6 +127,13 @@ const ChartContainer = styled.div`
   height: 500px;
 `;
 
+const Divider = styled.hr`
+  border: 0;
+  border-top: 3px solid black;
+  width: 67%;
+  margin: 0 auto;
+`;
+
 //Main component
 const Dashboard = () => {
   const [isPieModalOpen, setIsPieModalOpen] = useState(false);
@@ -166,6 +173,7 @@ const Dashboard = () => {
           </ChildContainer>
         </ParentContainer>
       </PageStyle>
+      <Divider />
       <PageStyle>
         <ParentContainer>
           <ChildContainer>
@@ -179,6 +187,8 @@ const Dashboard = () => {
           </ChildContainer>
         </ParentContainer>
       </PageStyle>
+      <Divider />
+      <Footer />
     </MainDiv>
   );
 };

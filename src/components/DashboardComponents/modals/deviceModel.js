@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 import { FaMobileAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
-import { fetchMaaS360Data } from "../../maas360Data";
+import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 import Modal from "react-modal";
 import AppleIcon from "@mui/icons-material/Apple";
 import CloseIcon from "@mui/icons-material/Close";

@@ -1,5 +1,33 @@
 import React from "react";
+import styled from "@emotion/styled";
 import { Chart } from "react-google-charts";
+
+
+//Styled components
+
+const ChartContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px; 
+  width: 500px; 
+  position: relative;
+`;
+
+const StyledChart = styled(Chart)`
+  position: absolute;
+`;
+
+const Title = styled.h2`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px 8px 0 0;
+  padding: 10px;
+  z-index: 2;
+`;
+
 
 const data = [
   [
@@ -18,11 +46,10 @@ const data = [
   [4, 90, 85, 95, 85, 88, 92, 95],
   [5, 70, 74, 63, 67, 69, 70, 72],
   [6, 30, 39, 22, 21, 28, 34, 40],
-
 ];
 
 const options = {
-  title: "Compliance by Unit",
+  title: "",
   curveType: "function",
   lineWidth: 4,
   intervals: { style: "line" },
@@ -40,12 +67,15 @@ const options = {
 
 export default function LineChartUnitCompliance() {
   return (
-    <Chart
-      chartType="LineChart"
-      width={"450px"}
-      height={"360px"}
-      data={data}
-      options={options}
-    />
+    <ChartContainer>
+      <Title>Unit Compliance</Title>
+      <StyledChart
+        chartType="LineChart"
+        width={"450px"}
+        height={"360px"}
+        data={data}
+        options={options}
+      />
+    </ChartContainer>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import SearchBar from "../components/searchPageComponents/searchBar";
-import SearchFilterUnit from "../components/searchPageComponents/searchFilterUnit";
-import FilterCheckbox from "../components/searchPageComponents/filterCheckbox";
-import SearchFilterStatus from "../components/searchPageComponents/searchFilterStatus";
-import SearchFilterType from "../components/searchPageComponents/searchFilterType";
+import SearchBar from "../components/searchPageComponents/searchBar/searchBar";
+import SearchFilterUnit from "../components/searchPageComponents/filters/searchFilterUnit";
+import FilterCheckbox from "../components/searchPageComponents/filters/filterCheckbox";
+import SearchFilterStatus from "../components/searchPageComponents/filters/searchFilterStatus";
+import SearchFilterType from "../components/searchPageComponents/filters/searchFilterType";
+import Footer from "../components/footer/footer";
 
 const MainDiv = styled.div`
   margin: 1rem;
@@ -95,6 +96,7 @@ const SearchPage = () => {
         </SearchResultsDiv>
       )}
       {!searchTerm && <p>Enter a search to see results below!</p>}
+      <Footer />
     </MainDiv>
   );
 };

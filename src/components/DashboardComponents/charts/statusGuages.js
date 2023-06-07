@@ -6,14 +6,24 @@ const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 360px; // Adjust as needed
-  width: 670px; // Adjust as needed
+  height: 360px; 
+  width: 670px; 
   position: relative;
 `;
 
 const StyledChart = styled(Chart)`
   position: absolute;
 `;
+
+const Title = styled.h2`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px 8px 0 0;
+  padding: 10px;
+`;
+
 
 function getRandomNumber() {
   return Math.random() * 100;
@@ -29,8 +39,8 @@ function getData() {
 }
 
 const options = {
-  width: 600,  // Increase as desired
-  height: 200,  // Increase as desired
+  width: 600,
+  height: 200,
   redFrom: 90,
   redTo: 100,
   yellowFrom: 75,
@@ -53,10 +63,10 @@ export default function Gauges() {
 
   return (
     <ChartContainer>
+      <Title>Device Status</Title>
       <StyledChart
         chartType="Gauge"
         width="600px"
-     //    height="3000px"  
         data={data}
         options={options}
       />
