@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import SearchBar from "../components/searchPageComponents/searchBar/searchBar";
 import SearchFilterUnit from "../components/searchPageComponents/filters/searchFilterUnit";
-import FilterCheckbox from "../components/searchPageComponents/filters/filterCheckbox";
 import SearchFilterStatus from "../components/searchPageComponents/filters/searchFilterStatus";
 import SearchFilterType from "../components/searchPageComponents/filters/searchFilterType";
 import Footer from "../components/footer/footer";
@@ -32,15 +31,6 @@ const SearchResultsDiv = styled.div`
   grid-gap: 2rem;
 `;
 
-const CheckboxRow = styled.div`
-  display: flex;
-  align-items: baseline;
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  margin-left: 2rem;
-  margin-right: 2rem;
-`;
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,21 +39,18 @@ const SearchPage = () => {
   const handleSearch = (event) => {
     event.preventDefault();
     // TODO: Implement search logic here
+    console.log("Searching for: (searchPage, line 42)", searchTerm);
   };
 
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleFilterChange = (event) => {
-    setFilterOption(event.target.value);
+  const handleFilterChange = (value) => {
+    setFilterOption(value);
   };
 
   return (
     <MainDiv>
       <h1
         css={css`
-          font-size: 3rem;
+          font-size: 2rem;
           color: white;
           margin-bottom: 2rem;
         `}

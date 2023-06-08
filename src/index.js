@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { ThemeProvider } from "@emotion/react";
 import Navigation from "./navigation/navigation";
-import App from "./app";
 import DeviceDetail from "./deviceDetails/deviceDetail";
 // import DeviceList from "./components/DeviceList"
 import Dashboard from "./pages/dashboard";

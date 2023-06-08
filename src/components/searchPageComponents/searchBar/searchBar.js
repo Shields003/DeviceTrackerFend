@@ -12,7 +12,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #003366;
+  background-color: #fca311;
   color: white;
   font-size: 1.2rem;
   padding: 1rem;
@@ -55,7 +55,7 @@ const SearchBar = ({ searchTerm, setSearchTerm, handleSearch }) => {
       <SearchBarWrapper>
         <Input
           type="text"
-          placeholder="Search for devices..."
+          placeholder="Search Database..."
           value={searchTerm}
           onKeyDown={handleKeyDown}
           onChange={handleInputChange}

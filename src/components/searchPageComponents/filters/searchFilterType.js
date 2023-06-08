@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
@@ -7,7 +7,7 @@ const Select = styled.select`
   font-size: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 150px
+  width: 150px;
 `;
 
 const Label = styled.label`
@@ -23,7 +23,14 @@ const Container = styled.div`
   padding: 1rem;
 `;
 
-const SearchFilterType = ({ filterOption, handleFilterChange }) => {
+const SearchFilterType = ({ handleFilterChange }) => {
+  const [filterOption, setFilterOption] = useState("");
+
+  const handleChange = (event) => {
+    setFilterOption(event.target.value);
+    handleFilterChange(event.target.value);
+  };
+
   return (
     <Container>
       <Label htmlFor="filter-select">Device Type:</Label>
@@ -31,7 +38,7 @@ const SearchFilterType = ({ filterOption, handleFilterChange }) => {
         name="filter-select"
         id="filter-select"
         value={filterOption}
-        onChange={handleFilterChange}
+        onChange={handleChange}
       >
         <option value="">All</option>
         <option value="ipad">iPads Only</option>
