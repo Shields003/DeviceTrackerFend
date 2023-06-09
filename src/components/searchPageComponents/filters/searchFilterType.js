@@ -7,7 +7,7 @@ const Select = styled.select`
   font-size: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 150px;
+  width: 160px;
 `;
 
 const Label = styled.label`
@@ -41,10 +41,11 @@ const SearchFilterType = ({ handleFilterChange }) => {
         onChange={handleChange}
       >
         <option value="">All</option>
-        <option value="ipad">iPads Only</option>
-        <option value="iphone">iPhones Only</option>
-        <option value="imac">iMacs Only</option>
-        <option value="">...</option>
+        <option value="tablets">Tablets</option>
+        <option value="smartphones">Smartphones</option>
+        <option value="desktops">Desktops</option>
+        <option value="laptops">Laptops</option>
+        <option value="other">Other</option>
       </Select>
     </Container>
   );

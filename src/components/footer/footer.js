@@ -1,6 +1,7 @@
 // Footer.js
 import React from "react";
 import styled from "@emotion/styled";
+import bockscarLogo from "../../images/bockscarLogo.png";
 
 const theme = {
   colors: {
@@ -27,16 +28,31 @@ const FooterText = styled.div`
   text-align: center;
   width: 90%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   font-size: 1.2rem;
+`;
+
+const Logo = styled.img`
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+`;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+  margin-left: 3rem;
 `;
 
 const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>
-        <p>© 2023 Bockscar. All rights reserved.</p>
-        <p>Contact Us: Christopher.A.Shields@Leidos.com</p>
+        <Content>© 2023 Bockscar - All rights reserved.</Content>
+        <Logo src={bockscarLogo} alt="Bockscar Logo" />
+        <Content>Contact Us: Christopher.A.Shields@Leidos.com</Content>
       </FooterText>
     </FooterContainer>
   );

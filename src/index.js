@@ -10,6 +10,12 @@ import Dashboard from "./pages/dashboard";
 import SearchPage from "./pages/searchPage";
 import HomePage from "./pages/homePage";
 import axios from "axios";
+import styled from "@emotion/styled";
+
+const Body = styled.body`
+  margin: 0;
+  padding: 0;
+`;
 
 
 const cors = require("cors");
@@ -21,6 +27,7 @@ const theme = {
     complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
     complementary2: "#d9d9d9", // complementary color 2 (gray)
     accent: "#1985a1", // accent color (blue/green)
+    accent2: "#fca311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
     alert: "#eb5e28", // alert color (orange)

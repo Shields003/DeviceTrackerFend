@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { FaUser, FaCog } from "react-icons/fa";
 
+import pulseLogoSmall from "../images/pulseLogoSmall.png";
+
 const Nav = styled.nav`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.text};
-  padding: 1rem;
+  padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,18 +19,18 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-const NavLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.text};
-  text-decoration: none;
-  margin: 0 1rem;
-  display: flex;
-  align-items: center;
-`;
+// const NavLink = styled(Link)`
+//   color: ${({ theme }) => theme.colors.text};
+//   text-decoration: none;
+//   margin: 0 1rem;
+//   display: flex;
+//   align-items: center;
+// `;
 
-const LeftNav = styled.div`
-  display: flex;
-  align-items: center;
-`;
+// const LeftNav = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
 
 const RightNav = styled.div`
   display: flex;
@@ -36,14 +38,55 @@ const RightNav = styled.div`
   margin-left: auto;
 `;
 
+// const IconWrapper = styled.span`
+//   margin-right: 0.5rem;
+// `;
+
+const NavLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: none;
+  margin: 0 12px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  };
+
+  &:hover {
+    color: #fca311;
+  }
+
+  &:active {
+    color: #e76f51;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const IconWrapper = styled.span`
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+`;
+const LeftNav = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Logo = styled.img`
+  height: 30px;
+  width: 200px;
+  object-fit: contain;
 `;
 
 const Navigation = () => {
   return (
     <Nav>
       <LeftNav>
+        <Logo src={pulseLogoSmall} alt="Logo" />
         <NavLink to="/">Home</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/search">Search Devices</NavLink>

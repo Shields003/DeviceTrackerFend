@@ -31,7 +31,6 @@ const SearchResultsDiv = styled.div`
   grid-gap: 2rem;
 `;
 
-
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterOption, setFilterOption] = useState("");
@@ -48,15 +47,7 @@ const SearchPage = () => {
 
   return (
     <MainDiv>
-      <h1
-        css={css`
-          font-size: 2rem;
-          color: white;
-          margin-bottom: 2rem;
-        `}
-      >
-        Device Database Search
-      </h1>
+      <h1>Device Database Search</h1>
       <SearchRow>
         <SearchBar
           searchTerm={searchTerm}

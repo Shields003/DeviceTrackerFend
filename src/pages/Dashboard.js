@@ -5,7 +5,7 @@ import Footer from "../components/footer/footer";
 
 // Local imports
 import DeviceStatus from "../components/dashboardComponents/deviceStatus/deviceStatus";
-import TotalDevices from "../components/dashboardComponents/deviceTotals/totalDevices";
+import DeviceTotals from "../components/dashboardComponents/deviceTotals/deviceTotals";
 import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
 import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
@@ -160,7 +160,7 @@ const Dashboard = () => {
       <PageStyle>
         <ParentContainer>
           <ChildContainer>
-            <TotalDevices />
+            <DeviceTotals />
           </ChildContainer>
           <ChildContainer>
             <DeviceStatus />
@@ -187,7 +187,6 @@ const Dashboard = () => {
           </ChildContainer>
         </ParentContainer>
       </PageStyle>
-      <Divider />
       <Footer />
     </MainDiv>
   );
