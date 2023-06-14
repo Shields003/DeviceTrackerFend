@@ -125,8 +125,7 @@ const Container = styled.div`
   color: ${theme.colors.text};
   font-family: Arial, sans-serif;
   text-align: center;
-  border: 
-  4px solid ${theme.colors.accent2};
+  border: 4px solid ${theme.colors.accent2};
   border-radius: 8px;
   animation: ${pulse} 1.7s ease-in-out;
 `;
