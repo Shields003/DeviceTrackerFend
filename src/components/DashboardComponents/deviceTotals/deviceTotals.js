@@ -23,14 +23,14 @@ const users = [
 ];
 
 const StatusBox = styled.div`
-  background-color: #f7f7f7;
+  background-color: #fff;
   padding: 2rem;
-  border-radius: 8px;
   text-align: center;
   min-width: 13vw;
   max-width: 15vw;
   min-height: 17vh;
   max-height: 18vh;
+  border-radius: 8px;
 `;
 
 const Title = styled.h1`
@@ -119,7 +119,7 @@ const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  border: 1px solid red;
+  border: 1px solid;
 `;
 
 const Th = styled.th`

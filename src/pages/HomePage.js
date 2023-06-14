@@ -63,15 +63,23 @@ const pulse = keyframes`
     opacity: 0;
     transform: scale(0.99);
   }
-  15% {
+  10% {
     opacity: 1;
     transform: scale(1);
   }
-  30% {
+  20% {
     opacity: 0.98;
     transform: scale(0.99);
   }
-  45% {
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
     opacity: 1;
     transform: scale(1);
   }
@@ -79,13 +87,13 @@ const pulse = keyframes`
     opacity: .98;
     transform: scale(.99);
   }
-  75% {
+  70% {
     opacity: 1;
     transform: scale(1);
   }
-  90% {
-    opacity: 1;
-    transform: scale(1);
+  80% {
+    opacity: .98;
+    transform: scale(.99);
   }
   100% {
     opacity: 1;
@@ -93,9 +101,15 @@ const pulse = keyframes`
 `;
 
 const TopContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  margin-top: -5rem;
+  margin-left: -8px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${theme.colors.complementary2};
 `;
 
 const Container = styled.div`
@@ -111,7 +125,8 @@ const Container = styled.div`
   color: ${theme.colors.text};
   font-family: Arial, sans-serif;
   text-align: center;
-  border: 5px solid ${theme.colors.accent2};
+  border: 
+  4px solid ${theme.colors.accent2};
   border-radius: 8px;
   animation: ${pulse} 1.7s ease-in-out;
 `;

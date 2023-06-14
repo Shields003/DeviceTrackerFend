@@ -6,7 +6,7 @@ import ReportIcon from '@mui/icons-material/Report';
 import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 
 const StatusBox = styled.div`
-  background-color: #f7f7f7;
+  background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
   text-align: center;

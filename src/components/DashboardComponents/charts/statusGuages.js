@@ -9,6 +9,8 @@ const ChartContainer = styled.div`
   height: 360px; 
   width: 670px; 
   position: relative;
+  background-color: #fff;
+  border-radius: 8px;
 `;
 
 const StyledChart = styled(Chart)`

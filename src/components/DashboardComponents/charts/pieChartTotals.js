@@ -23,18 +23,19 @@ const theme = {
 //Styled components
 const ChartContainer = styled.div`
   display: flex;
-  flex-direction: column; // stack children vertically
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around; // evenly distribute space around items
+  justify-content: space-around;
   height: 360px;
-  width: 500px;
-  position: relative; // position context for absolute positioned children
+  width: 400px;
+  position: relative; children
   zindex: 1000;
+  background-color: #fff;
+  border-radius: 8px;
 `;
 
 const StyledChart = styled(Chart)`
-
-
+  background-color: #f7f7f7;
 `;
 const StyledChartModal = styled(Chart)`
   margin-top: 4rem;
@@ -64,7 +65,7 @@ const ExpandButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: ${theme.colors.accent2}; // change the color to make the button visible
+  color: ${theme.colors.accent2}; 
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
@@ -117,7 +118,7 @@ const ModalStyles = {
     margin: "0", // add this line
     zIndex: "1000",
     overflow: "hidden",
-    border: "4px solid black",
+    border: "4px solid #284b63",
     borderRadius: "10px",
   },
 };

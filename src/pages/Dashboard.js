@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Footer from "../components/footer/footer";
+import { Global, css } from "@emotion/react";
 
 // Local imports
 import DeviceStatus from "../components/dashboardComponents/deviceStatus/deviceStatus";
@@ -9,12 +10,10 @@ import DeviceTotals from "../components/dashboardComponents/deviceTotals/deviceT
 import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
 import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
-import PieChartBig from "../components/dashboardComponents/charts/pieChartBig";
 import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
 import Gauges from "../components/dashboardComponents/charts/statusGuages";
-import PieModal from "../components/dashboardComponents/modals/pieModal";
-import LineModal from "../components/dashboardComponents/modals/lineModal";
 
+//Styled components
 const theme = {
   colors: {
     primary: "#284b63", // primary color (blue)
@@ -28,7 +27,10 @@ const theme = {
   },
 };
 
-//Styled components
+const TopDiv = styled.div`
+  overflow: hidden;
+`;
+
 const ParentContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -36,16 +38,14 @@ const ParentContainer = styled.div`
   flex-wrap: wrap;
   margin: 1.5rem;
   padding: 1rem;
-  border-radius: 10px;
-  max-width: 80vw;
-  max-height: 70vh;
+  border-radius: 8px;
 `;
 
 const ChildContainer = styled.div`
   display: flex;
   margin: 1rem;
-  border: 5px solid black;
-  border-radius: 10px;
+  border: 4px solid #284b63;
+  border-radius: 8px;
   background-color: ${(props) => props.theme.secondaryColor};
   align-items: center;
   box-shadow: 10px 10px 5px grey;
@@ -54,6 +54,7 @@ const ChildContainer = styled.div`
 const MainDiv = styled.div`
   margin: 1rem;
   padding-top: 8rem;
+  background-color: ${theme.colors.complementary2};
 `;
 
 const PageStyle = styled.div`
@@ -67,7 +68,7 @@ const PageStyle = styled.div`
 
 const Divider = styled.hr`
   border: 0;
-  border-top: 3px solid black;
+  border-top: 4px solid #284b63;
   width: 67%;
   margin: 0 auto;
 `;
@@ -94,39 +95,56 @@ const Dashboard = () => {
   };
 
   return (
-    <MainDiv>
-      <PageStyle>
-        <ParentContainer>
-          <ChildContainer>
-            <DeviceTotals />
-          </ChildContainer>
-          <ChildContainer>
-            <DeviceStatus />
-          </ChildContainer>
-          <ChildContainer>
-            <DeviceQuarantined />
-          </ChildContainer>
-          <ChildContainer>
-            <DatabaseInfo />
-          </ChildContainer>
-        </ParentContainer>
-      </PageStyle>
-      <Divider />
-      <PageStyle>
-        <ParentContainer>
-          <ChildContainer>
-            <PieChartTotals />
-          </ChildContainer>
-          <ChildContainer>
-            <Gauges />
-          </ChildContainer>
-          <ChildContainer>
-            <LineChartUnitCompliance />
-          </ChildContainer>
-        </ParentContainer>
-      </PageStyle>
-      <Footer />
-    </MainDiv>
+    <TopDiv>
+      <Global
+        styles={css`
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: ${theme.colors.complementary2};
+          }
+          #root {
+            height: 100%;
+          }
+        `}
+      />
+      <MainDiv>
+        <PageStyle>
+          <ParentContainer>
+            <ChildContainer>
+              <DeviceTotals />
+            </ChildContainer>
+            <ChildContainer>
+              <DeviceStatus />
+            </ChildContainer>
+            <ChildContainer>
+              <DeviceQuarantined />
+            </ChildContainer>
+            <ChildContainer>
+              <DatabaseInfo />
+            </ChildContainer>
+          </ParentContainer>
+        </PageStyle>
+        <Divider />
+        <PageStyle>
+          <ParentContainer>
+            <ChildContainer>
+              <PieChartTotals />
+            </ChildContainer>
+            <ChildContainer>
+              <Gauges />
+            </ChildContainer>
+            <ChildContainer>
+              <LineChartUnitCompliance />
+            </ChildContainer>
+          </ParentContainer>
+        </PageStyle>
+        <Footer />
+      </MainDiv>
+    </TopDiv>
   );
 };
 

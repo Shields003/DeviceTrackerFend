@@ -26,9 +26,11 @@ const ChartContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-
-  width: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 400px;
   height: 360px;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
@@ -42,6 +44,7 @@ const Container = styled.div`
 const StyledChart = styled(Chart)`
   width: 90%;
   height: 90%;
+  margin-left: -14px;
 `;
 
 const Title = styled.h2`
@@ -125,7 +128,7 @@ const ModalStyles = {
     height: "50%", // adjust as needed
     zIndex: "1000",
     overflow: "hidden",
-    border: "4px solid black",
+    border: "4px solid #284b63",
     borderRadius: "10px",
   },
 };

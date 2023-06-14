@@ -6,7 +6,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import AppleIcon from "@mui/icons-material/Apple";
 
 const StatusBox = styled.div`
-  background-color: #f7f7f7;
+  background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
   text-align: center;

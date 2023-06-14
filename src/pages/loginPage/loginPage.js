@@ -1,24 +1,45 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
+import Footer from "../../components/footer/footer";
+import loginButton from "../../components/buttons/loginButton";
+import logoutButton from "../../components/buttons/logoutButton";
+
+const theme = {
+  colors: {
+    primary: "#284b63", // primary color (blue)
+    complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
+    complementary2: "#d9d9d9", // complementary color 2 (gray)
+    accent: "#1985a1", // accent color (blue/green)
+    accent2: "#fca311", // accent color 2 (orange)
+    dark: "#353535", // dark color (dark gray)
+    text: "#ffffff", // text color (white)
+    alert: "#eb5e28", // alert color (orange/red)
+  },
+};
+
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f2f2f2;
+  width: 100vw;
+  background-color: ${theme.colors.complementary2};
+
 `;
 
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 120px;
-  padding-top: 5em;
+  width: 400px;
+  height: 200px;
+  padding: 2em;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
+  border: 4px solid #284b63;
+  border-radius: 8px;
 `;
 
 const Input = styled.input`
@@ -41,13 +62,19 @@ const Button = styled.button`
   }
 `;
 
-const Title = styled.div`
-  font-size: 34px;
-  font-weight: bold;
+const Title = styled.h1`
+  margin-top: -15em;
+  font-size: 2rem;
   text-align: center;
+  color: ${theme.colors.primary};
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  zindex: 1000;
+`;
+
+const Signup = styled.h2`
+  font-size: 1.2rem;
+  color: ${theme.colors.dark};
+  margin-top: 2rem;
+  text-align: center;
 `;
 
 const LoginPage = () => {
@@ -62,9 +89,8 @@ const LoginPage = () => {
 
   return (
     <LoginContainer>
-       <Title>Sign-In or Register</Title>
+      <Title>Login</Title>
       <LoginForm onSubmit={handleSubmit}>
-       
         <Input
           type="text"
           placeholder="Username"
@@ -78,7 +104,9 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Login</Button>
+        <Signup>Not Registered?  Register Here!</Signup>
       </LoginForm>
+      <Footer />
     </LoginContainer>
   );
 };

@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { FaUser, FaCog } from "react-icons/fa";
-
+import HomeIcon from "@mui/icons-material/Home";
+// Local Imports
 import pulseLogoSmall from "../images/pulseLogoSmall.png";
+import loginButton from "../components/buttons/loginButton";
+import logoutButton from "../components/buttons/logoutButton";
 
 const Nav = styled.nav`
   font-size: 1.3rem;
@@ -49,6 +52,9 @@ const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
+  &:hover {
+    color: #fca311; // Change this to the color you want on hover
+  }
 `;
 
 const IconWrapper = styled.span`
@@ -77,9 +83,13 @@ const Navigation = () => {
     <Nav>
       <LeftNav>
         <Logo src={pulseLogoSmall} alt="Logo" />
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <IconWrapper>
+            <HomeIcon />
+          </IconWrapper>
+        </NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/search">Search Devices</NavLink>
+        <NavLink to="/search">Database</NavLink>
       </LeftNav>
       <RightNav>
         <NavLink to="/login">
