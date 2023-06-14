@@ -346,22 +346,6 @@ const DeviceTotals = () => {
                 <Td>{other[11]}</Td>
                 <Td>{totalOther}</Td>
               </tr>
-              <tr>
-                <Td>Users</Td>
-                <Td>{users[0]}</Td>
-                <Td>{users[1]}</Td>
-                <Td>{users[2]}</Td>
-                <Td>{users[3]}</Td>
-                <Td>{users[4]}</Td>
-                <Td>{users[5]}</Td>
-                <Td>{users[6]}</Td>
-                <Td>{users[7]}</Td>
-                <Td>{users[8]}</Td>
-                <Td>{users[9]}</Td>
-                <Td>{users[10]}</Td>
-                <Td>{users[11]}</Td>
-                <Td>{totalUsers}</Td>
-              </tr>
             </tbody>
           </Table>
           <CloseButton onClick={() => setIsOpen(false)}>Close</CloseButton>

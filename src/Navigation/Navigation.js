@@ -49,19 +49,6 @@ const NavLink = styled(Link)`
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
-  };
-
-  &:hover {
-    color: #fca311;
-  }
-
-  &:active {
-    color: #e76f51;
-  }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const IconWrapper = styled.span`
@@ -74,6 +61,9 @@ const IconWrapper = styled.span`
 const LeftNav = styled.div`
   display: flex;
   align-items: center;
+  &:hover {
+    color: "#fca311";
+  }
 `;
 
 const Logo = styled.img`

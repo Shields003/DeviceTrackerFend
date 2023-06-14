@@ -9,6 +9,7 @@ import DeviceTotals from "../components/dashboardComponents/deviceTotals/deviceT
 import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
 import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
+import PieChartBig from "../components/dashboardComponents/charts/pieChartBig";
 import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
 import Gauges from "../components/dashboardComponents/charts/statusGuages";
 import PieModal from "../components/dashboardComponents/modals/pieModal";
@@ -16,13 +17,14 @@ import LineModal from "../components/dashboardComponents/modals/lineModal";
 
 const theme = {
   colors: {
-    primary: "#284b63",
-    complementary1: "#3c6e71",
-    complementary2: "#d9d9d9",
-    accent: "#1985a1",
-    dark: "#353535",
-    text: "#ffffff",
-    alert: "#eb5e28",
+    primary: "#284b63", // primary color (blue)
+    complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
+    complementary2: "#d9d9d9", // complementary color 2 (gray)
+    accent: "#1985a1", // accent color (blue/green)
+    accent2: "#fca311", // accent color 2 (orange)
+    dark: "#353535", // dark color (dark gray)
+    text: "#ffffff", // text color (white)
+    alert: "#eb5e28", // alert color (orange/red)
   },
 };
 
@@ -61,70 +63,6 @@ const PageStyle = styled.div`
   border-radius: 10px;
   background-color: ${(props) => props.theme.primaryColor};
   height: 100%;
-`;
-
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5); // semi-transparent black
-`;
-
-const ModalContentContainer = styled.div`
-  background-color: ${theme.colors.complementary1};
-  padding: 20px;
-  border-radius: 10px;
-  width: 70%; // larger modal
-  max-width: 900px; // limit the width
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Button = styled.button`
-  background: ${theme.colors.primary};
-  color: ${theme.colors.text};
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  &:hover {
-    background: ${theme.colors.accent};
-  }
-`;
-
-// Style your modal
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
-const ModalContent = styled.div`
-  background: ${theme.colors.complementary2};
-  padding: 30px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ChartContainer = styled.div`
-  width: 500px;
-  height: 500px;
 `;
 
 const Divider = styled.hr`

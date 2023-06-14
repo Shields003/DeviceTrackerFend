@@ -29,6 +29,7 @@ const Info = styled.p`
   font-size: 1.5rem;
   max-width: 900px;
   line-height: 1.5;
+  font-style: italic;
 `;
 
 const FeatureList = styled.ul`
@@ -60,23 +61,23 @@ const Logo = styled.img`
 const pulse = keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
   15% {
     opacity: 1;
     transform: scale(1);
   }
   30% {
-    opacity: 0.95;
-    transform: scale(0.98);
+    opacity: 0.98;
+    transform: scale(0.99);
   }
   45% {
     opacity: 1;
     transform: scale(1);
   }
   60% {
-    opacity: .95;
-    transform: scale(.98);
+    opacity: .98;
+    transform: scale(.99);
   }
   75% {
     opacity: 1;

@@ -11,6 +11,8 @@ import SearchPage from "./pages/searchPage";
 import HomePage from "./pages/homePage";
 import axios from "axios";
 import styled from "@emotion/styled";
+import LoginPage from "./pages/loginPage";
+
 
 const Body = styled.body`
   margin: 0;
@@ -30,7 +32,7 @@ const theme = {
     accent2: "#fca311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
-    alert: "#eb5e28", // alert color (orange)
+    alert: "#eb5e28", // alert color (orange/red)
   },
 };
 
@@ -45,6 +47,7 @@ ReactDOM.render(
         <Route path="/search" element={<SearchPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/devices/:deviceId" element={<DeviceDetail />} />
+        <Route path = "/login" element={<LoginPage />} />
       </Routes>
     </Router>
   </ThemeProvider>,

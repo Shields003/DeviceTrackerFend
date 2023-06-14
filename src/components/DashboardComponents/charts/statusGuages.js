@@ -13,6 +13,7 @@ const ChartContainer = styled.div`
 
 const StyledChart = styled(Chart)`
   position: absolute;
+  margin-top: 1.2em;
 `;
 
 const Title = styled.h2`
