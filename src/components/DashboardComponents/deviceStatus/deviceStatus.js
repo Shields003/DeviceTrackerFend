@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
 import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import AssessmentIcon from "@mui/icons-material/Assessment";
 import AppleIcon from "@mui/icons-material/Apple";
 
 const StatusBox = styled.div`
@@ -66,9 +66,9 @@ const ButtonStyle = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  height: 52px; 
+  height: 52px;
   width: 181px;
-  background-color: #fca311;
+  background-color: #284b63;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
@@ -86,7 +86,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #e76f51;
+    background-color: #fca311;;
   }
 
   &:active {
@@ -150,6 +150,14 @@ const ModalStyles = {
   },
 };
 
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 100px;
+`;
+
 // const DeviceContainer = styled.div`
 //   display: flex;
 //   justify-content: space-between;
@@ -204,7 +212,7 @@ const DeviceStatus = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading>Loading...</Loading>;
   }
 
   return (

@@ -42,8 +42,8 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 3rem;
-  margin-left: 3rem;
+  margin-right: 10rem;
+  margin-left: 10rem;
 `;
 
 const Footer = () => {

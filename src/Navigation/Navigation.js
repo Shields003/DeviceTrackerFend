@@ -53,8 +53,10 @@ const NavLink = styled(Link)`
   align-items: center;
   transition: color 0.3s ease;
   &:hover {
-    color: #fca311; // Change this to the color you want on hover
+    color: #fca311;
   }
+  &:active {
+    color: #eb5e28;
 `;
 
 const IconWrapper = styled.span`
@@ -64,6 +66,7 @@ const IconWrapper = styled.span`
   justify-content: center;
   margin-right: 10px;
 `;
+
 const LeftNav = styled.div`
   display: flex;
   align-items: center;

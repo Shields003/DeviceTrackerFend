@@ -60,7 +60,7 @@ const Logo = styled.img`
 
 const pulse = keyframes`
   0% {
-    opacity: 0;
+    opacity: .90;
     transform: scale(0.99);
   }
   10% {
@@ -68,7 +68,7 @@ const pulse = keyframes`
     transform: scale(1);
   }
   20% {
-    opacity: 0.98;
+    opacity: 0.99;
     transform: scale(0.99);
   }
   30% {
@@ -84,7 +84,7 @@ const pulse = keyframes`
     transform: scale(1);
   }
   60% {
-    opacity: .98;
+    opacity: .99;
     transform: scale(.99);
   }
   70% {
@@ -92,7 +92,7 @@ const pulse = keyframes`
     transform: scale(1);
   }
   80% {
-    opacity: .98;
+    opacity: .99;
     transform: scale(.99);
   }
   100% {
@@ -127,7 +127,7 @@ const Container = styled.div`
   text-align: center;
   border: 4px solid ${theme.colors.accent2};
   border-radius: 8px;
-  animation: ${pulse} 1.7s ease-in-out;
+  animation: ${pulse} 1.4s ease-in-out;
 `;
 
 const HomePage = () => {

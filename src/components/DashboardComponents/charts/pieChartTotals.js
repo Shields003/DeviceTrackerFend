@@ -119,7 +119,7 @@ const ModalStyles = {
     zIndex: "1000",
     overflow: "hidden",
     border: "4px solid #284b63",
-    borderRadius: "10px",
+    borderRadius: "8px",
   },
 };
 

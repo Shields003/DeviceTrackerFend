@@ -84,7 +84,7 @@ const ButtonStyle = styled.button`
   font-size: 1.2rem;
   height: 52px; 
   width: 181px;
-  background-color: #fca311;
+  background-color:  #284b63;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
@@ -102,7 +102,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #e76f51;
+    background-color: #fca311;
   }
 
   &:active {
@@ -181,6 +181,14 @@ const Value = styled.span`
   color: #333;
 `;
 
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 100px;
+`;
+
 const DeviceTotals = () => {
   const [totalDevices, setTotalDevices] = useState(0);
   const [totalIPads, setTotalIPads] = useState(0);
@@ -221,7 +229,7 @@ const DeviceTotals = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading>Loading...</Loading>;
   }
 
   return (

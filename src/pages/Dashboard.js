@@ -1,8 +1,8 @@
 //Library imports
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import Footer from "../components/footer/footer";
 import { Global, css } from "@emotion/react";
+import { keyframes } from "@emotion/react";
 
 // Local imports
 import DeviceStatus from "../components/dashboardComponents/deviceStatus/deviceStatus";
@@ -12,6 +12,7 @@ import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevi
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
 import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
 import Gauges from "../components/dashboardComponents/charts/statusGuages";
+import FooterWithDate from "../components/footer/footerWithDate";
 
 //Styled components
 const theme = {
@@ -46,7 +47,6 @@ const ChildContainer = styled.div`
   margin: 1rem;
   border: 4px solid #284b63;
   border-radius: 8px;
-  background-color: ${(props) => props.theme.secondaryColor};
   align-items: center;
   box-shadow: 10px 10px 5px grey;
 `;
@@ -62,16 +62,29 @@ const PageStyle = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.primaryColor};
   height: 100%;
+`;
+
+const glow = keyframes`
+  0%, 80%, 100% {
+    border-color: ${theme.colors.primary};
+    box-shadow: none;
+  }
+  90% {
+    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 5px #fca311, 0 0 2px #fca311, 0 0 5px #fca311, 0 0 5px ${theme.colors.primary};
+  }
 `;
 
 const Divider = styled.hr`
   border: 0;
-  border-top: 4px solid #284b63;
+  border-top: 4px solid ${theme.colors.primary};
   width: 67%;
   margin: 0 auto;
+  z-index: 1000;
+  animation: ${glow} 10s infinite;
 `;
+
 
 //Main component
 const Dashboard = () => {
@@ -142,7 +155,7 @@ const Dashboard = () => {
             </ChildContainer>
           </ParentContainer>
         </PageStyle>
-        <Footer />
+        <FooterWithDate />
       </MainDiv>
     </TopDiv>
   );

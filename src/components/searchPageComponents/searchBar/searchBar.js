@@ -19,16 +19,26 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: all 0.2s ease-in-out;
   &:hover {
-    background-color: #002244;
+    background-color: #e76f51;
+  }
+
+  &:active {
+    background-color: #e76f51;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
   }
 `;
 
 const SearchForm = styled.form`
   display: flex;
   align-items: center;
-  min-width: 300px;
-  max-width: 500px;
+  min-width: 320px;
+  height: 100%;
   border: 1px solid #003366;
   border-radius: 8px;
   overflow: hidden;
@@ -36,6 +46,8 @@ const SearchForm = styled.form`
 `;
 
 const SearchBarWrapper = styled.div`
+  display: flex;
+  min-width: 255px;
   flex-grow: 1;
 `;
 

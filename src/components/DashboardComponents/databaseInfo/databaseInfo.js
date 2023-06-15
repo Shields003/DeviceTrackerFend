@@ -64,7 +64,7 @@ const ButtonStyle = styled.button`
   font-size: 1.2rem;
   height: 52px; 
   width: 181px;
-  background-color: #fca311;
+  background-color: #284b63;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
@@ -82,7 +82,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #e76f51;
+    background-color: #fca311;
   }
 
   &:active {

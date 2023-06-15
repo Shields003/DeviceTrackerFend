@@ -6,7 +6,7 @@ import SearchBar from "../components/searchPageComponents/searchBar/searchBar";
 import SearchFilterUnit from "../components/searchPageComponents/filters/searchFilterUnit";
 import SearchFilterStatus from "../components/searchPageComponents/filters/searchFilterStatus";
 import SearchFilterType from "../components/searchPageComponents/filters/searchFilterType";
-import Footer from "../components/footer/footer";
+import FooterWithDate from "../components/footer/footerWithDate";
 
 //Styled components
 const theme = {
@@ -113,7 +113,7 @@ const SearchPage = () => {
           </SearchResultsDiv>
         )}
         {!searchTerm && <p>Enter a search to see results below!</p>}
-        <Footer />
+        <FooterWithDate />
       </MainDiv>
     </TopDiv>
   );
