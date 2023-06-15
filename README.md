@@ -1,6 +1,6 @@
 # Device Tracker Frontend
 
-This is the frontend for the Device Tracker application. It is built with React and Emotion for styling.
+This is the frontend for the Pulse Device Tracker application. It is built with React and Emotion for styling.
 
 ## Features
 
