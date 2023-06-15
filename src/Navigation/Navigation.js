@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { FaUser, FaCog } from "react-icons/fa";
 import HomeIcon from "@mui/icons-material/Home";
+import { useAuth0 } from "@auth0/auth0-react";
 // Local Imports
 import pulseLogoSmall from "../images/pulseLogoSmall.png";
-import loginButton from "../components/buttons/loginButton";
-import logoutButton from "../components/buttons/logoutButton";
+import LoginButton from "../components/buttons/loginButton";
+import LogoutButton from "../components/buttons/logoutButton";
+import LoginPage from "../pages/loginPage/loginPage";
 
 const Nav = styled.nav`
   font-size: 1.3rem;
@@ -21,19 +23,6 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
 `;
-
-// const NavLink = styled(Link)`
-//   color: ${({ theme }) => theme.colors.text};
-//   text-decoration: none;
-//   margin: 0 1rem;
-//   display: flex;
-//   align-items: center;
-// `;
-
-// const LeftNav = styled.div`
-//   display: flex;
-//   align-items: center;
-// `;
 
 const RightNav = styled.div`
   display: flex;
@@ -59,13 +48,13 @@ const NavLink = styled(Link)`
     color: #eb5e28;
 `;
 
-const IconWrapper = styled.span`
-  margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-`;
+// const IconWrapper = styled.span`
+//   margin-right: 0.5rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-right: 10px;
+// `;
 
 const LeftNav = styled.div`
   display: flex;
@@ -81,7 +70,36 @@ const Logo = styled.img`
   object-fit: contain;
 `;
 
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text};
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+  font: inherit;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-right: 10px;
+  &:hover {
+    background-color: #fca311;
+  }
+  &:active {
+    background-color: #eb5e28;
+  }
+`;
+
+const IconWrapper = styled.span`
+  margin-right: 5px;
+  font-size: 1.2rem;
+`;
+
 const Navigation = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
   return (
     <Nav>
       <LeftNav>
@@ -91,22 +109,39 @@ const Navigation = () => {
             <HomeIcon />
           </IconWrapper>
         </NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/search">Database</NavLink>
+        {isAuthenticated && (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/search">Database</NavLink>
+          </>
+        )}
       </LeftNav>
       <RightNav>
-        <NavLink to="/login">
-          <IconWrapper>
-            <FaUser />
-          </IconWrapper>
-          Login
-        </NavLink>
-        <NavLink to="/settings">
-          <IconWrapper>
-            <FaCog />
-          </IconWrapper>
-          Settings
-        </NavLink>
+        {isAuthenticated ? (
+          <>
+            <NavLink to="/settings">
+              <IconWrapper>
+                <FaCog />
+              </IconWrapper>
+              Settings
+            </NavLink>
+            <Button
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
+              <IconWrapper>
+                <FaUser />
+              </IconWrapper>
+              Log Out
+            </Button>
+          </>
+        ) : (
+          <Button onClick={() => loginWithRedirect()}>
+            <IconWrapper>
+              <FaUser />
+            </IconWrapper>
+            Log In
+          </Button>
+        )}
       </RightNav>
     </Nav>
   );

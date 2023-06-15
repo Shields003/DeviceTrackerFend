@@ -29,6 +29,7 @@ const FooterContainer = styled.footer`
   min-height: 60px;
   box-sizing: border-box;
   left: 0;
+  height: 75px;
 `;
 
 const FooterText = styled.div`

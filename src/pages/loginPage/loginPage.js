@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
+import { useAuth0 } from "@auth0/auth0-react";
 
+// Local Imports
 import Footer from "../../components/footer/footer";
 import loginButton from "../../components/buttons/loginButton";
 import logoutButton from "../../components/buttons/logoutButton";
+import LoginButton from "../../components/buttons/loginButton";
 
 const theme = {
   colors: {
@@ -26,7 +29,6 @@ const LoginContainer = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: ${theme.colors.complementary2};
-
 `;
 
 const LoginForm = styled.form`
@@ -78,34 +80,22 @@ const Signup = styled.h2`
 `;
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { loginWithRedirect } = useAuth0();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can handle the form submission
-    console.log(`Username: ${username}, Password: ${password}`);
+  const handleLogin = () => {
+    loginWithRedirect();
+  };
+
+  const handleSignup = () => {
+    loginWithRedirect({ screen_hint: "signup" });
   };
 
   return (
     <LoginContainer>
       <Title>Login</Title>
-      <LoginForm onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button type="submit">Login</Button>
-        <Signup>Not Registered?  Register Here!</Signup>
-      </LoginForm>
+      <Button onClick={handleLogin}>Login</Button>
+      <Button onClick={handleSignup}>Sign Up</Button> {/* Add this button */}
+      <Signup>Not Registered? Register Here!</Signup>
       <Footer />
     </LoginContainer>
   );
