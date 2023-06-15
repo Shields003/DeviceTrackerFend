@@ -3,17 +3,18 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import Navigation from "./navigation/navigation";
-import DeviceDetail from "./deviceDetails/deviceDetail";
 import axios from "axios";
 import styled from "@emotion/styled";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 // Auth0
-import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
+import Auth0ProviderWithHistory from "./auth/auth0ProviderWithHistory";
 // Local Imports
 import Dashboard from "./pages/dashboard";
 import SearchPage from "./pages/searchPage";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage/loginPage";
 import SettingsPage from "./pages/settingsPage";
+import AppRoutes from "./navigation/appRoutes";
 
 const Body = styled.body`
   margin: 0;
@@ -35,19 +36,21 @@ const theme = {
   },
 };
 
+const Loading = () => {
+  return (
+    <div>
+      <h1>Loading...</h1>
+    </div>
+  );
+};
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
       <Auth0ProviderWithHistory>
         <Navigation />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/devices/:deviceId" element={<DeviceDetail />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-        </Routes>
+        <AppRoutes />
+      
       </Auth0ProviderWithHistory>
     </Router>
   </ThemeProvider>,
