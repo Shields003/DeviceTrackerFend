@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 import styled from "@emotion/styled";
 
+const theme = {
+  colors: {
+    primary: "#284b63", // primary color (blue)
+    complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
+    complementary2: "#d9d9d9", // complementary color 2 (gray)
+    accent: "#1985a1", // accent color (blue/green)
+    accent2: "#fca311", // accent color 2 (orange)
+    dark: "#353535", // dark color (dark gray)
+    text: "#ffffff", // text color (white)
+    alert: "#eb5e28", // alert color (orange/red)
+  },
+};
+
 const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -24,7 +37,9 @@ const Title = styled.h2`
   left: 50%;
   transform: translateX(-50%);
   border-radius: 8px 8px 0 0;
-  padding: 10px;
+  padding: 4px;
+  font-size: 30px;
+  color: ${theme.colors.primary};
 `;
 
 

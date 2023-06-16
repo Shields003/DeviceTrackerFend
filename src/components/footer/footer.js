@@ -22,7 +22,9 @@ const FooterContainer = styled.footer`
   width: 100%;
   box-sizing: border-box;
   left: 0;
+  right: 0;
   height: 75px;
+  padding-left: 5em;
 `;
 
 const FooterText = styled.div`

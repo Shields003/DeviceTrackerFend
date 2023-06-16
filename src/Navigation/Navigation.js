@@ -19,7 +19,7 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 5;
   display: flex;
   align-items: center;
 `;
@@ -28,6 +28,8 @@ const RightNav = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+  font-size: inherit;
+  font-style: inherit;
 `;
 
 // const IconWrapper = styled.span`
@@ -39,7 +41,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   margin: 0 12px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   transition: color 0.3s ease;
   &:hover {
     color: #fca311;
@@ -77,24 +79,32 @@ const Button = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  font-size: inherit;
   font: inherit;
   display: flex;
-  align-items: center; 
+  align-items: baseline;
   justify-content: center;
-  margin-right: 10px;
   &:hover {
-    background-color: #fca311;
+    color: #fca311;
   }
   &:active {
-    background-color: #eb5e28;
+    color: #eb5e28;
   }
 `;
 
 const IconWrapper = styled.span`
   margin-right: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const NavWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+  margin-top: 8px;
 `;
 
 const Navigation = () => {
@@ -110,10 +120,10 @@ const Navigation = () => {
           </IconWrapper>
         </NavLink>
         {isAuthenticated && (
-          <>
+          <NavWrapper>
             <NavLink to="/dashboard">Dashboard</NavLink>
             <NavLink to="/search">Database</NavLink>
-          </>
+          </NavWrapper>
         )}
       </LeftNav>
       <RightNav>

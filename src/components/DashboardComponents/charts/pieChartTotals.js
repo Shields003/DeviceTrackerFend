@@ -48,9 +48,12 @@ const StyledChartModal = styled(Chart)`
 const Title = styled.h2`
   margin-top: -20px;
   padding: 0;
-  text-align: center;
   margin-bottom: -3rem;
+  text-align: center;
+  font-size: 30px;
+  color: ${theme.colors.primary};
 `;
+
 const ModalTitle = styled.h2`
   margin-top: 10px;
   padding: 0;
@@ -60,15 +63,18 @@ const ModalTitle = styled.h2`
 
 const ExpandButton = styled.button`
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
-  color: ${theme.colors.accent2}; 
+  color: ${theme.colors.primary}; 
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
+    color: ${theme.colors.accent2};
+  }
+  &:active {
     color: ${theme.colors.alert};
 `;
 

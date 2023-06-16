@@ -20,16 +20,17 @@ const FooterContainer = styled.footer`
   background-color: ${theme.colors.primary};
   color: ${theme.colors.text};
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
   position: fixed;
   bottom: 0;
   width: 100%;
-  min-height: 60px;
   box-sizing: border-box;
   left: 0;
+  right: 0;
   height: 75px;
+  padding-left: 7em;
 `;
 
 const FooterText = styled.div`
@@ -42,15 +43,15 @@ const RefreshButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  background-color: ${({ theme }) => theme.colors.accent2};
-  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.complementary2};
+  color: ${({ theme }) => theme.colors.primary};
   border: 2px solid ${({ theme }) => theme.colors.text};
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.alert};
+    background-color: ${({ theme }) => theme.colors.accent2};
     color: ${({ theme }) => theme.colors.text};
   }
   &:active {

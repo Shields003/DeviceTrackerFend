@@ -21,10 +21,12 @@ const StatusBox = styled.div`
 const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #284b63;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.5rem;
+  color: #3c6e71;
 `;
 
 const CloseButton = styled.button`
@@ -198,7 +200,7 @@ function DatabaseInfo() {
   return (
     <StatusBox>
       <Title>Database Info</Title>
-      <h2>Total Devices: {totalDevices}</h2>
+      <SubTitle>Total Devices: {totalDevices}</SubTitle>
       <div onClick={openModal}>
         <ButtonContainer>
           <ButtonStyle onClick={openModal}>

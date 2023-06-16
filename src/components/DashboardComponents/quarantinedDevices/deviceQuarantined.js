@@ -19,7 +19,12 @@ const StatusBox = styled.div`
 const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #284b63;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.5rem;
+  color: #3c6e71;
 `;
 
 const CloseButton = styled.button`
@@ -207,7 +212,7 @@ const DeviceQuarantined = () => {
   return (
     <StatusBox>
       <Title>Quarantined Devices</Title>
-      <h2>Quarantined: {totalQuarantined}</h2>
+      <SubTitle>Quarantined: {totalQuarantined}</SubTitle>
       <div onClick={openModal}>
         <ButtonContainer>
           <ButtonStyle onClick={openModal}>

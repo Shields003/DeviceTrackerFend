@@ -50,7 +50,28 @@ ReactDOM.render(
       <Auth0ProviderWithHistory>
         <Navigation />
         <AppRoutes />
-      
+        {/* <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route
+            path="/search"
+            element={withAuthenticationRequired(SearchPage, {
+              onRedirecting: () => <Loading>Loading...</Loading>,
+            })}
+          />
+          <Route
+            path="/dashboard"
+            element={withAuthenticationRequired(Dashboard, {
+              onRedirecting: () => <Loading />,
+            })}
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/settings"
+            element={withAuthenticationRequired(SettingsPage, {
+              onRedirecting: () => <Loading>Loading...</Loading>,
+            })}
+          /> */}
+        {/* </Routes> */}
       </Auth0ProviderWithHistory>
     </Router>
   </ThemeProvider>,

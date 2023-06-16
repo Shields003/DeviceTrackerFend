@@ -19,7 +19,12 @@ const StatusBox = styled.div`
 const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #284b63;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.5rem;
+  color: #3c6e71;
 `;
 
 const ModalTitle = styled.h1`
@@ -86,7 +91,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #fca311;;
+    background-color: #fca311;
   }
 
   &:active {
@@ -218,7 +223,7 @@ const DeviceStatus = () => {
   return (
     <StatusBox>
       <Title>Device Status</Title>
-      <h2>Compliant Devices: 22741</h2>
+      <SubTitle>Compliant Devices: {totalCompliant}</SubTitle>
       <ButtonContainer>
         <ButtonStyle onClick={openModal}>
           <AssessmentIcon className="apple-icon" />

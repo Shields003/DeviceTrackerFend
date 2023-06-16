@@ -38,12 +38,18 @@ const MainDiv = styled.div`
   align-items: center;
 `;
 
+const PageTitle = styled.h1`
+  font-size: 2.5rem;
+  color: ${theme.colors.primary};
+`;
+
 const SearchRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  color: ${theme.colors.primary};
 `;
 
 const SearchResultsDiv = styled.div`
@@ -52,6 +58,7 @@ const SearchResultsDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
+  color: ${theme.colors.primary};
 `;
 
 const SearchPage = () => {
@@ -86,7 +93,7 @@ const SearchPage = () => {
         `}
       />
       <MainDiv>
-        <h1>Device Database Search</h1>
+        <PageTitle>Device Database</PageTitle>
         <SearchRow>
           <SearchBar
             searchTerm={searchTerm}

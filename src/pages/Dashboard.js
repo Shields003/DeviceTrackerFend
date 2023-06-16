@@ -32,6 +32,21 @@ const TopDiv = styled.div`
   overflow: hidden;
 `;
 
+const MainDiv = styled.div`
+  margin: 1rem;
+  padding-top: 8rem;
+  background-color: ${theme.colors.complementary2};
+`;
+
+
+const PageStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  height: 100%;
+`;
+
 const ParentContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -49,20 +64,6 @@ const ChildContainer = styled.div`
   border-radius: 8px;
   align-items: center;
   box-shadow: 10px 10px 5px grey;
-`;
-
-const MainDiv = styled.div`
-  margin: 1rem;
-  padding-top: 8rem;
-  background-color: ${theme.colors.complementary2};
-`;
-
-const PageStyle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  height: 100%;
 `;
 
 const glow = keyframes`

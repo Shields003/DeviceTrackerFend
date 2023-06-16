@@ -50,20 +50,25 @@ const StyledChart = styled(Chart)`
 const Title = styled.h2`
   text-align: center;
   position: relative;
-  margin-top: -23px;
+  margin-top: -14px;
+  font-size: 30px;
+  color: ${theme.colors.primary};
 `;
 
 const ExpandButton = styled.button`
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
-  color: ${theme.colors.accent2}; // change the color to make the button visible
+  color: ${theme.colors.primary}; // change the color to make the button visible
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
+    color: ${theme.colors.accent2};
+  }
+  &:active {
     color: ${theme.colors.alert};
 `;
 
