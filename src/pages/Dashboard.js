@@ -10,7 +10,7 @@ import DeviceTotals from "../components/dashboardComponents/deviceTotals/deviceT
 import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
 import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
 import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
-import LineChartUnitCompliance from "../components/dashboardComponents/charts/lineChartUnitCompliance";
+import UnitComplianceLineChart from "../components/dashboardComponents/charts/unitComplianceLineChart";
 import Gauges from "../components/dashboardComponents/charts/statusGuages";
 import FooterWithDate from "../components/footer/footerWithDate";
 
@@ -152,7 +152,7 @@ const Dashboard = () => {
               <Gauges />
             </ChildContainer>
             <ChildContainer>
-              <LineChartUnitCompliance />
+              <UnitComplianceLineChart />
             </ChildContainer>
           </ParentContainer>
         </PageStyle>

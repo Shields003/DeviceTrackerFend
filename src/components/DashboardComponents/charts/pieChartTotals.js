@@ -3,7 +3,6 @@ import { Chart } from "react-google-charts";
 import { FaExpandAlt } from "react-icons/fa";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
-import { left } from "@popperjs/core";
 
 Modal.setAppElement("#root"); // This line is needed for accessibility reasons
 
@@ -20,7 +19,7 @@ const theme = {
   },
 };
 
-//Styled components
+//Styled components for the tile/small chart
 const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,13 +36,6 @@ const ChartContainer = styled.div`
 const StyledChart = styled(Chart)`
   background-color: #f7f7f7;
 `;
-const StyledChartModal = styled(Chart)`
-  margin-top: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  zindex: 1000;
-`;
 
 const Title = styled.h2`
   margin-top: -20px;
@@ -52,13 +44,6 @@ const Title = styled.h2`
   text-align: center;
   font-size: 30px;
   color: ${theme.colors.primary};
-`;
-
-const ModalTitle = styled.h2`
-  margin-top: 10px;
-  padding: 0;
-  text-align: center;
-  font-size: 36px;
 `;
 
 const ExpandButton = styled.button`
@@ -111,24 +96,6 @@ const ButtonContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-const ModalStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "20%",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    width: "60%", // adjust as needed
-    height: "60%", // adjust as needed
-    padding: "0", // add this line
-    margin: "0", // add this line
-    zIndex: "1000",
-    overflow: "hidden",
-    border: "4px solid #284b63",
-    borderRadius: "8px",
-  },
-};
-
 const data = [
   ["Device", "Totals"],
   ["Tablets", 24248],
@@ -142,11 +109,30 @@ const options = {
   title: "",
   is3D: false,
   chartArea: {
-    left: "10%", // adjust as needed
-    top: "10%", // adjust as needed
-    width: "80%", // adjust as needed
-    height: "80%", // adjust as needed
+    left: "10%",
+    top: "5%",
+    width: "90%",
+    height: "90%",
     zIndex: "1000",
+  },
+};
+
+// Modal declarations and styles
+const ModalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "20%",
+    bottom: "auto",
+    transform: "translate(-50%, -50%)",
+    width: "50%",
+    height: "55%",
+    padding: "0",
+    margin: "0",
+    zIndex: "1000",
+    overflow: "hidden",
+    border: "4px solid #284b63",
+    borderRadius: "8px",
   },
 };
 
@@ -154,13 +140,63 @@ const modalOptions = {
   title: "",
   is3D: true,
   chartArea: {
-    left: "35%", // adjust as needed
-    top: "10%", // adjust as needed
-    width: "90%", // adjust as needed
-    height: "90%", // adjust as needed
+    left: "5%",
+    top: "5%",
+    width: "95%",
+    height: "95%",
     zIndex: "1000",
   },
 };
+
+const ModalTitle = styled.h2`
+  margin-top: 10px;
+  padding: 0;
+  text-align: center;
+  font-size: 36px;
+  color: ${theme.colors.primary};
+`;
+
+const ModalPieBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 1600px;
+  height: 600px;
+`;
+
+const StyledChartModal = styled(Chart)`
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  zindex: 1000;
+  width: 60%;
+  height: 90%;
+`;
+
+const StyledTable = styled.table`
+  margin-top: 8rem;
+  border: 2px solid ${theme.colors.primary};
+  border-radius: 10px;
+  border-collapse: collapse;
+  width: 235px;
+  height: 235px;
+  margin-right: 25em;
+  th,
+  td {
+    border: 1px solid ${theme.colors.primary};
+    padding: 0.5rem;
+    text-align: left;
+  }
+  th {
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.text};
+  }
+  td {
+    background-color: ${theme.colors.complementary2};
+    color: ${theme.colors.dark};
+  }
+`;
 
 export default function PieChartTotals() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -187,17 +223,36 @@ export default function PieChartTotals() {
         contentLabel="Expanded Pie Chart"
       >
         <ModalTitle>Device Totals</ModalTitle>
-
-        <StyledChartModal
-          chartType="PieChart"
-          data={data}
-          options={modalOptions}
-          width={"90%"} // adjust as needed
-          height={"90%"} // adjust as needed
-        />
-        <ButtonContainer>
-          <CloseButton onClick={() => setIsModalOpen(false)}>Close</CloseButton>
-        </ButtonContainer>
+        <ModalPieBox>
+          <StyledChartModal
+            chartType="PieChart"
+            data={data}
+            options={modalOptions}
+            width={"90%"} // adjust as needed
+            height={"90%"} // adjust as needed
+          />
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>Device</th>
+                <th>Totals</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.slice(1).map((row, i) => (
+                <tr key={i}>
+                  <td>{row[0]}</td>
+                  <td>{row[1]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </StyledTable>
+          <ButtonContainer>
+            <CloseButton onClick={() => setIsModalOpen(false)}>
+              Close
+            </CloseButton>
+          </ButtonContainer>
+        </ModalPieBox>
       </Modal>
     </ChartContainer>
   );

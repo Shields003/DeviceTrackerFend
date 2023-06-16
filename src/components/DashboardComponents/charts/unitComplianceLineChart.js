@@ -44,7 +44,6 @@ const Container = styled.div`
 const StyledChart = styled(Chart)`
   width: 90%;
   height: 90%;
-  margin-left: -14px;
 `;
 
 const Title = styled.h2`
@@ -62,7 +61,7 @@ const ExpandButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: ${theme.colors.primary}; // change the color to make the button visible
+  color: ${theme.colors.primary};
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
@@ -120,6 +119,10 @@ const StyledChartModal = styled(Chart)`
   align-items: center;
   justify-content: center;
   zindex: 1000;
+  width: 60%;
+  height: 90%;
+  min-width: 300px; 
+  min-height: 300px; 
 `;
 
 const ModalStyles = {
@@ -129,10 +132,14 @@ const ModalStyles = {
     right: "auto",
     bottom: "auto",
     transform: "translate(-50%, -50%)",
-    width: "50%", // adjust as needed
-    height: "50%", // adjust as needed
+    width: "80%", // increased to 80%
+    height: "50%", // increased to 80%
+    minWidth: "400px", // minimum width
+    minHeight: "400px", // minimum height
+    maxWidth: "1200px", // maximum width
+    maxHeight: "800px", // maximum height
     zIndex: "1000",
-    overflow: "hidden",
+    overflow: "auto", // changed to auto to allow scrolling if content overflows
     border: "4px solid #284b63",
     borderRadius: "10px",
   },
@@ -143,6 +150,40 @@ const ModalTitle = styled.h2`
   padding: 0;
   text-align: center;
   font-size: 36px;
+  color: ${theme.colors.primary};
+`;
+
+const ModalLineBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: auto;
+  height: 500px;
+  padding: 0 20px; 
+`;
+
+const StyledTable = styled.table`
+  margin-top: 8rem;
+  border: 2px solid ${theme.colors.primary};
+  border-radius: 10px;
+  border-collapse: collapse;
+  width: 235px;
+  height: 235px;
+  margin-right: 5em;
+  th,
+  td {
+    border: 1px solid ${theme.colors.primary};
+    padding: 0.5rem;
+    text-align: left;
+  }
+  th {
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.text};
+  }
+  td {
+    background-color: ${theme.colors.complementary2};
+    color: ${theme.colors.dark};
+  }
 `;
 
 const data = [
@@ -182,9 +223,10 @@ const options = {
   vAxis: { viewWindow: { min: 0, max: 160 } },
 };
 
-export default function LineChartUnitCompliance() {
+export default function UnitComplianceLineChart() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [chartKey, setChartKey] = useState(0); // new state for the chart key
+  const [chartKey, setChartKey] = useState(0); // key for non-modal chart
+  const [modalChartKey, setModalChartKey] = useState(0); // key for modal chart
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -192,27 +234,23 @@ export default function LineChartUnitCompliance() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setChartKey((prevKey) => prevKey + 1); // increment the chart key to force a re-render
+    setModalChartKey((prevKey) => prevKey + 1); 
+    setModalChartKey((prevKey) => prevKey + 1); // increment the modal chart key to force a re-render
+    setChartKey((prevKey) => prevKey + 1); // increment the non-modal chart key to force a re-render
   };
 
   return (
     <ChartContainer>
-      <Container>
-        <Title>Unit Compliance</Title>
-        <ChartWrapper>
-          <StyledChart
-            key={chartKey} // add the key here
-            chartType="LineChart"
-            width={"90%"}
-            height={"90%"}
-            data={data}
-            options={options}
-          />
-        </ChartWrapper>
-        <ExpandButton onClick={openModal}>
-          <FaExpandAlt />
-        </ExpandButton>
-      </Container>
+      <Title>Unit Compliance</Title>
+      <StyledChart
+        key={chartKey} // use the non-modal chart key here
+        chartType="LineChart"
+        data={data}
+        options={options}
+      />
+      <ExpandButton onClick={openModal}>
+        <FaExpandAlt />
+      </ExpandButton>
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -220,14 +258,33 @@ export default function LineChartUnitCompliance() {
         contentLabel="Expanded Line Chart"
       >
         <ModalTitle>Unit Compliance</ModalTitle>
-        <StyledChartModal
-          chartType="LineChart"
-          data={data}
-          options={options}
-          width={"100%"}
-          height={"100%"}
-        />
-        <CloseButton onClick={closeModal}>Close</CloseButton>
+        <ModalLineBox>
+          <StyledChartModal
+            key={modalChartKey} // use the modal chart key here
+            chartType="LineChart"
+            data={data}
+            options={options}
+            width={"1000px"} // adjust as needed
+            height={"615px"} // adjust as needed
+          />
+          <StyledTable>
+            <thead>
+              <tr>
+                <th>Interval</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.slice(1).map((row, i) => (
+                <tr key={i}>
+                  <td>{row[0]}</td>
+                  <td>{row[1]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </StyledTable>
+          <CloseButton onClick={closeModal}>Close</CloseButton>
+        </ModalLineBox>
       </Modal>
     </ChartContainer>
   );
