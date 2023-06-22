@@ -7,7 +7,7 @@ const Input = styled.input`
   padding: 1rem;
   font-size: 1.2rem;
   border: none;
-  color: #333333;
+  color: #284b63;
   border-radius: 4px;
 `;
 
@@ -37,8 +37,9 @@ const Button = styled.button`
 const SearchForm = styled.form`
   display: flex;
   align-items: center;
+  justify-content: baseline;
   min-width: 320px;
-  height: 100%;
+  height: 40px;
   border: 1px solid #003366;
   border-radius: 8px;
   overflow: hidden;

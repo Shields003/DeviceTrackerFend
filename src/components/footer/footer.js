@@ -25,6 +25,7 @@ const FooterContainer = styled.footer`
   right: 0;
   height: 75px;
   padding-left: 5em;
+  border-top: 2px solid white;
 `;
 
 const FooterText = styled.div`

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
 import AppleIcon from "@mui/icons-material/Apple";
-import StorageIcon from "@mui/icons-material/Storage";
+import StorageIcon from '@mui/icons-material/Storage';
 import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 import axios from "axios";
 
@@ -64,7 +64,7 @@ const ButtonStyle = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  height: 52px;
+  height: 52px; 
   width: 181px;
   background-color: #284b63;
   border: none;
@@ -195,12 +195,12 @@ function DatabaseInfo() {
     setIsOpen(false);
   };
 
-  const totalUsers = data.length;
+  const totalDevices = data.length;
 
   return (
     <StatusBox>
-      <Title>Users</Title>
-      <SubTitle>Total Users: {totalUsers}</SubTitle>
+      <Title>Database Info</Title>
+      <SubTitle>Total Devices: {totalDevices}</SubTitle>
       <div onClick={openModal}>
         <ButtonContainer>
           <ButtonStyle onClick={openModal}>
@@ -213,23 +213,23 @@ function DatabaseInfo() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={ModalStyles}
-        contentLabel="User Info Modal"
+        contentLabel="Database Info Modal"
       >
-        <Title>User Data</Title>
+        <Title>Users</Title>
         <Table>
           <thead>
             <tr>
+              <Th>Device ID</Th>
               <Th>Username</Th>
               <Th>Email</Th>
-              <Th>Device ID</Th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => (
               <tr key={item._id}>
+                <Td>{item.device_id}</Td>
                 <Td>{item.username}</Td>
                 <Td>{item.email}</Td>
-                <Td>{item.device_id}</Td>
               </tr>
             ))}
           </tbody>

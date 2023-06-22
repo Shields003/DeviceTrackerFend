@@ -38,7 +38,6 @@ const MainDiv = styled.div`
   background-color: ${theme.colors.complementary2};
 `;
 
-
 const PageStyle = styled.div`
   display: flex;
   justify-content: center;
@@ -60,18 +59,32 @@ const ParentContainer = styled.div`
 const ChildContainer = styled.div`
   display: flex;
   margin: 1rem;
-  border: 4px solid #284b63;
+  border: 3px solid ${theme.colors.primary};
   border-radius: 8px;
   align-items: center;
   box-shadow: 10px 10px 5px grey;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    border-color: #fca311;
+  }
+
+  &:active {
+    border-color: #e76f51;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
+  }
 `;
 
 const glow = keyframes`
-  0%, 80%, 100% {
+  0%, 70% {
     border-color: ${theme.colors.primary};
     box-shadow: none;
   }
-  90% {
+  80% {
     border-color: ${theme.colors.primary};
     box-shadow: 0 0 5px #fca311, 0 0 2px #fca311, 0 0 5px #fca311, 0 0 5px ${theme.colors.primary};
   }
@@ -79,13 +92,13 @@ const glow = keyframes`
 
 const Divider = styled.hr`
   border: 0;
-  border-top: 4px solid ${theme.colors.primary};
-  width: 67%;
+  border-top: 3px solid ${theme.colors.primary};
+  border-radius: 8px;
+  width: 60%;
   margin: 0 auto;
   z-index: 1000;
-  animation: ${glow} 10s infinite;
+  animation: ${glow} 5s infinite;
 `;
-
 
 //Main component
 const Dashboard = () => {

@@ -22,6 +22,7 @@ const Nav = styled.nav`
   z-index: 5;
   display: flex;
   align-items: center;
+  border-bottom: 2px solid white;
 `;
 
 const RightNav = styled.div`
@@ -122,6 +123,7 @@ const Navigation = () => {
         {isAuthenticated && (
           <NavWrapper>
             <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/map">Map</NavLink>
             <NavLink to="/search">Database</NavLink>
           </NavWrapper>
         )}

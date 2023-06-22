@@ -42,13 +42,6 @@ const FeatureItem = styled.li`
   margin-bottom: 1rem;
 `;
 
-const Logo = styled.img`
-  object-fit: contain;
-  margin-right: 1rem;
-  height: 600px;
-  width: 600px;
-`;
-
 // const fadeIn = keyframes`
 //   from {
 //     opacity: 0;
@@ -60,20 +53,20 @@ const Logo = styled.img`
 
 const pulse = keyframes`
   0% {
-    opacity: .90;
-    transform: scale(0.99);
+    opacity: 1;
+    transform: scale(1);
   }
   10% {
-    opacity: 1;
-    transform: scale(1);
+    opacity: .97;
+    transform: scale(.98);
   }
   20% {
-    opacity: 0.99;
-    transform: scale(0.99);
-  }
-  30% {
     opacity: 1;
     transform: scale(1);
+  }
+  30% {
+    opacity: .97;
+    transform: scale(.98);
   }
   40% {
     opacity: 1;
@@ -84,20 +77,30 @@ const pulse = keyframes`
     transform: scale(1);
   }
   60% {
-    opacity: .99;
-    transform: scale(.99);
+    opacity: .97;
+    transform: scale(.98);
   }
   70% {
     opacity: 1;
     transform: scale(1);
   }
   80% {
-    opacity: .99;
-    transform: scale(.99);
+    opacity: .97;
+    transform: scale(.98);
   }
   100% {
     opacity: 1;
     transform: scale(1);
+`;
+
+const Logo = styled.img`
+  border: 4px groove ${theme.colors.accent2};
+  border-radius: 8px;
+  object-fit: contain;
+  margin-right: 1rem;
+  height: 400px;
+  width: 570px;
+  animation: ${pulse} 1.7s ease-in-out;
 `;
 
 const TopContainer = styled.div`
@@ -125,9 +128,8 @@ const Container = styled.div`
   color: ${theme.colors.text};
   font-family: Arial, sans-serif;
   text-align: center;
-  border: 4px solid ${theme.colors.accent2};
+  border: 4px groove ${theme.colors.accent2};
   border-radius: 8px;
-  animation: ${pulse} 1.4s ease-in-out;
 `;
 
 const HomePage = () => {

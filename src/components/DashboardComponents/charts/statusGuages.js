@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 import styled from "@emotion/styled";
+import { FaExpandAlt } from "react-icons/fa";
 
 const theme = {
   colors: {
@@ -19,8 +20,8 @@ const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 360px; 
-  width: 670px; 
+  height: 360px;
+  width: 670px;
   position: relative;
   background-color: #fff;
   border-radius: 8px;
@@ -42,19 +43,70 @@ const Title = styled.h2`
   color: ${theme.colors.primary};
 `;
 
+const CloseButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #fca311;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-function getRandomNumber() {
+  &:hover {
+    background-color: #e76f51;
+  }
+
+  &:active {
+    background-color: #e76f51;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+`;
+
+const ExpandButton = styled.button`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: ${theme.colors.primary}; 
+  font-size: 1.5rem;
+  zIndex: 5;
+  &:hover {
+    color: ${theme.colors.accent2};
+  }
+  &:active {
+    color: ${theme.colors.alert};
+`;
+
+//This is an arrow function that gets a random number between 0 and 100
+const getRandomNumber = () => {
   return Math.random() * 100;
-}
+};
 
-function getData() {
+//This is a function that returns an array of arrays
+const getData = () => {
   return [
     ["Label", "Value"],
     ["Compliant", getRandomNumber()],
     ["Out-of-Date", getRandomNumber()],
     ["Quarantined", getRandomNumber()],
   ];
-}
+};
 
 const options = {
   width: 600,
@@ -82,12 +134,18 @@ export default function Gauges() {
   return (
     <ChartContainer>
       <Title>Device Status</Title>
+      <ExpandButton>
+        <FaExpandAlt />
+      </ExpandButton>
       <StyledChart
         chartType="Gauge"
         width="600px"
         data={data}
         options={options}
       />
+      {/* <ButtonContainer>
+        <CloseButton>Close</CloseButton>
+      </ButtonContainer> */}
     </ChartContainer>
   );
 }

@@ -175,7 +175,7 @@ const Loading = styled.div`
 //   margin-right: 1rem;
 // `;
 
-const Value = styled.span``;
+
 const totalCompliant = 22371;
 const totalOutdated = 1745;
 const totalNonCompliant = 1246;

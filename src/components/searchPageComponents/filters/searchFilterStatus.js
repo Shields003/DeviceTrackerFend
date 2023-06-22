@@ -5,9 +5,9 @@ import { css } from "@emotion/react";
 const Select = styled.select`
   padding: 0.5rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-
+  border: 1px solid #284b63;
+  border-radius: 4px;
+  color: #284b63
 `;
 
 const Label = styled.label`

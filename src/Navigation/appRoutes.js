@@ -6,6 +6,7 @@ import HomePage from "../pages/homePage";
 import Dashboard from "../pages/dashboard";
 import SearchPage from "../pages/searchPage";
 import SettingsPage from "../pages/settingsPage";
+import MapPage from "../pages/mapPage";
 // import Loading from "./components/Loading";
 
 const Loading = () => {
@@ -28,11 +29,16 @@ const ProtectedSettingsPage = withAuthenticationRequired(SettingsPage, {
   onRedirecting: () => <Loading />,
 });
 
+const ProtectedMapPage = withAuthenticationRequired(MapPage, {
+  onRedirecting: () => <Loading />,
+});
+
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/dashboard" element={<ProtectedDashboard />} />
     <Route path="/search" element={<ProtectedSearchPage />} />
+    <Route path="/map" element={<ProtectedMapPage />} />
     <Route path="/settings" element={<ProtectedSettingsPage />} />
   </Routes>
 );

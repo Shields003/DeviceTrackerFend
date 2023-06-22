@@ -3,32 +3,18 @@ import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
 
 //Styled components
-const theme = {
-  colors: {
-    primary: "#284b63", // primary color (blue)
-    complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
-    complementary2: "#d9d9d9", // complementary color 2 (gray)
-    accent: "#1985a1", // accent color (blue/green)
-    accent2: "#fca311", // accent color 2 (orange)
-    dark: "#353535", // dark color (dark gray)
-    text: "#ffffff", // text color (white)
-    alert: "#eb5e28", // alert color (orange/red)
-  },
-};
-
 const Select = styled.select`
   padding: 0.5rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 150px;
-  color: ${theme.colors.primary});
+  border: 1px solid #284b63;
+  border-radius: 4px;
+  width: 160px;
+  color: #284b63;
 `;
 
 const Label = styled.label`
   margin-right: 1rem;
   font-size: 1.5rem;
-  color: ${theme.colors.primary};
 `;
 
 const Container = styled.div`
@@ -36,7 +22,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem;
-  color: ${theme.colors.primary};
 `;
 
 const SearchFilterUnit = ({ handleFilterChange }) => {

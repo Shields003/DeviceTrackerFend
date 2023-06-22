@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
+import { keyframes } from "@emotion/react";
+
 // Local Imports
 import SearchBar from "../components/searchPageComponents/searchBar/searchBar";
 import SearchFilterUnit from "../components/searchPageComponents/filters/searchFilterUnit";
@@ -48,7 +50,7 @@ const SearchRow = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   color: ${theme.colors.primary};
 `;
 
@@ -59,6 +61,27 @@ const SearchResultsDiv = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
   color: ${theme.colors.primary};
+`;
+
+const glow = keyframes`
+  0%, 70% {
+    border-color: ${theme.colors.primary};
+    box-shadow: none;
+  }
+  80% {
+    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 5px #fca311, 0 0 2px #fca311, 0 0 5px #fca311, 0 0 5px ${theme.colors.primary};
+  }
+`;
+
+const Divider = styled.hr`
+  margin-top: 20px;
+  border: 0;
+  border-top: 3px solid ${theme.colors.primary};
+  border-radius: 8px;
+  width: 52%;
+  z-index: 1000;
+  animation: ${glow} 5s infinite;
 `;
 
 const SearchPage = () => {
@@ -113,6 +136,7 @@ const SearchPage = () => {
             handleFilterChange={handleFilterChange}
           />
         </SearchRow>
+        <Divider />
         {/* Render search results here */}
         {searchTerm && (
           <SearchResultsDiv>
