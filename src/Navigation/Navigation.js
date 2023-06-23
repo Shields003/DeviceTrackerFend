@@ -6,15 +6,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useAuth0 } from "@auth0/auth0-react";
 // Local Imports
 import pulseLogoSmall from "../images/pulseLogoSmall.png";
-import LoginButton from "../components/buttons/loginButton";
-import LogoutButton from "../components/buttons/logoutButton";
-import LoginPage from "../pages/loginPage/loginPage";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Nav = styled.nav`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.text};
-  padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,26 +21,15 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   border-bottom: 2px solid white;
+  height: 60px;
 `;
-
-const RightNav = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  font-size: inherit;
-  font-style: inherit;
-`;
-
-// const IconWrapper = styled.span`
-//   margin-right: 0.5rem;
-// `;
 
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
   margin: 0 12px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   transition: color 0.3s ease;
   &:hover {
     color: #fca311;
@@ -51,17 +38,23 @@ const NavLink = styled(Link)`
     color: #eb5e28;
 `;
 
-// const IconWrapper = styled.span`
-//   margin-right: 0.5rem;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin-right: 10px;
-// `;
+const RightNav = styled.div`
+  margin-left: auto;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+  font-style: inherit;
+  &:hover {
+    color: "#fca311";
+  }
+`;
 
 const LeftNav = styled.div`
   display: flex;
   align-items: center;
+  font-size: inherit;
+  font-style: inherit;
   &:hover {
     color: "#fca311";
   }
@@ -94,31 +87,57 @@ const Button = styled.button`
   }
 `;
 
-const IconWrapper = styled.span`
-  margin-right: 5px;
-  font-size: 1rem;
-  margin-top: 10px;
+const IconWrapper = styled.div`
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+`;
+
+const UserName = styled.div`
+  font-size: inherit;
+  font-style: inherit;
+  margin-right: 1rem;
 `;
 
 const NavWrapper = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   margin-top: 8px;
 `;
 
+const LogIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+`;
+
+const HomeIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  margin-top: 6px;
+`;
+
+const TextWrapper = styled.div`
+  font-size: inherit;
+  font-style: inherit;
+  padding-left: .5rem;`;
+
 const Navigation = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   return (
     <Nav>
       <LeftNav>
         <Logo src={pulseLogoSmall} alt="Logo" />
         <NavLink to="/">
-          <IconWrapper>
+          <HomeIconWrapper>
             <HomeIcon />
-          </IconWrapper>
+          </HomeIconWrapper>
         </NavLink>
         {isAuthenticated && (
           <NavWrapper>
@@ -129,8 +148,12 @@ const Navigation = () => {
         )}
       </LeftNav>
       <RightNav>
-        {isAuthenticated ? (
+        {isAuthenticated && (
           <>
+            <IconWrapper>
+              <FaUser />
+            </IconWrapper>
+            <UserName>{user.name}</UserName>
             <NavLink to="/settings">
               <IconWrapper>
                 <FaCog />
@@ -140,18 +163,19 @@ const Navigation = () => {
             <Button
               onClick={() => logout({ returnTo: window.location.origin })}
             >
-              <IconWrapper>
-                <FaUser />
-              </IconWrapper>
-              Log Out
+              <LogIconWrapper>
+                <LogoutIcon />
+                <TextWrapper>Logout</TextWrapper>
+              </LogIconWrapper>
             </Button>
           </>
-        ) : (
+        )}
+        {!isAuthenticated && (
           <Button onClick={() => loginWithRedirect()}>
-            <IconWrapper>
-              <FaUser />
-            </IconWrapper>
-            Log In
+            <LogIconWrapper>
+              <LoginIcon />
+              <TextWrapper>Log In</TextWrapper>
+            </LogIconWrapper>
           </Button>
         )}
       </RightNav>

@@ -94,7 +94,7 @@ const pulse = keyframes`
 `;
 
 const Logo = styled.img`
-  border: 4px groove ${theme.colors.accent2};
+  border: 4px double ${theme.colors.accent2};
   border-radius: 8px;
   object-fit: contain;
   margin-right: 1rem;
