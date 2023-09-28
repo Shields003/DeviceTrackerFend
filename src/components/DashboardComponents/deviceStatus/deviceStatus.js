@@ -3,17 +3,16 @@ import styled from "@emotion/styled";
 import Modal from "react-modal";
 import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import AppleIcon from "@mui/icons-material/Apple";
 
 const StatusBox = styled.div`
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
-  min-width: 13vw;
-  max-width: 15vw;
-  min-height: 17vh;
-  max-height: 18vh;
+  width: 12vw;
+  max-width: 12vw;
+  height: 17vh;
+  max-height: 17vh;
 `;
 
 const Title = styled.h1`
@@ -163,19 +162,6 @@ const Loading = styled.div`
   width: 100px;
 `;
 
-// const DeviceContainer = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-bottom: 1rem;
-// `;
-
-// const Label = styled.span`
-//   font-weight: bold;
-//   margin-right: 1rem;
-// `;
-
-
 const totalCompliant = 22371;
 const totalOutdated = 1745;
 const totalNonCompliant = 1246;
@@ -223,7 +209,7 @@ const DeviceStatus = () => {
   return (
     <StatusBox>
       <Title>Device Status</Title>
-      <SubTitle>Compliant Devices: {totalCompliant}</SubTitle>
+      <SubTitle>Compliant: {totalCompliant}</SubTitle>
       <ButtonContainer>
         <ButtonStyle onClick={openModal}>
           <AssessmentIcon className="apple-icon" />

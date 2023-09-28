@@ -12,6 +12,7 @@ const theme = {
 
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.primary};
+  font-family: optima, sans-serif;
   color: ${theme.colors.text};
   display: flex;
   justify-content: center;
@@ -33,13 +34,14 @@ const FooterText = styled.div`
   width: 90%;
   display: flex;
   justify-content: center;
-  font-size: 1.2rem;
 `;
 
 const Logo = styled.img`
   height: 60px;
   width: 60px;
   object-fit: contain;
+  margin-left: 15em;
+  margin-right: 15em;
 `;
 
 const Content = styled.div`

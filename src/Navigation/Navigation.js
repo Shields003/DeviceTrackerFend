@@ -10,7 +10,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const Nav = styled.nav`
-  font-size: 1.2rem;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.text};
   position: fixed;
@@ -20,8 +19,9 @@ const Nav = styled.nav`
   z-index: 5;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid white;
+  border-bottom: 1px outset white;
   height: 60px;
+  font-family: optima, sans-serif;
 `;
 
 const NavLink = styled(Link)`
@@ -125,7 +125,8 @@ const HomeIconWrapper = styled.div`
 const TextWrapper = styled.div`
   font-size: inherit;
   font-style: inherit;
-  padding-left: .5rem;`;
+  padding-left: 0.5rem;
+`;
 
 const Navigation = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -133,11 +134,8 @@ const Navigation = () => {
   return (
     <Nav>
       <LeftNav>
-        <Logo src={pulseLogoSmall} alt="Logo" />
         <NavLink to="/">
-          <HomeIconWrapper>
-            <HomeIcon />
-          </HomeIconWrapper>
+          <Logo src={pulseLogoSmall} alt="Logo" />
         </NavLink>
         {isAuthenticated && (
           <NavWrapper>
@@ -150,22 +148,20 @@ const Navigation = () => {
       <RightNav>
         {isAuthenticated && (
           <>
-            <IconWrapper>
-              <FaUser />
-            </IconWrapper>
-            <UserName>{user.name}</UserName>
+            
+            <UserName>Welcome, {user.name}</UserName>
             <NavLink to="/settings">
               <IconWrapper>
                 <FaCog />
               </IconWrapper>
-              Settings
+              
             </NavLink>
             <Button
               onClick={() => logout({ returnTo: window.location.origin })}
             >
               <LogIconWrapper>
                 <LogoutIcon />
-                <TextWrapper>Logout</TextWrapper>
+                <TextWrapper></TextWrapper>
               </LogIconWrapper>
             </Button>
           </>

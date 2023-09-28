@@ -6,30 +6,14 @@ import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 // import AppleIcon from "@mui/icons-material/Apple";
 import Modal from "react-modal";
 
-// Mock data
-// Mock data
-const tablets = [
-  3127, 2391, 1987, 1613, 1017, 823, 712, 611, 509, 403, 307, 190,
-]; // Total: 11481
-const smartphones = [
-  2037, 1523, 1217, 911, 813, 709, 611, 517, 409, 307, 211, 135,
-]; // Total: 6491
-const desktops = [1523, 1217, 987, 813, 709, 611, 517, 409, 307, 211, 135, 82]; // Total: 4712
-const laptops = [1591, 1273, 1017, 823, 709, 611, 517, 409, 307, 211, 135, 82]; // Total: 3918
-const other = [223, 187, 153, 127, 109, 91, 77, 65, 53, 41, 29, 16]; // Total: 543
-const totalOther = 543;
-const users = [
-  13481, 8491, 6712, 5918, 5543, 5172, 4801, 4430, 4059, 3688, 3317, 2946,
-];
-
 const StatusBox = styled.div`
   background-color: #fff;
   padding: 2rem;
   text-align: center;
-  min-width: 13vw;
-  max-width: 15vw;
-  min-height: 17vh;
-  max-height: 18vh;
+  width: 12vw;
+  max-width: 12vw;
+  height: 17vh;
+  max-height: 17vh;
   border-radius: 8px;
 `;
 
@@ -147,6 +131,14 @@ const Td = styled.td`
   padding-top: 2rem;
 `;
 
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 100px;
+`;
+
 const ModalStyles = {
   content: {
     top: "50%",
@@ -169,31 +161,20 @@ const ModalStyles = {
   },
 };
 
-const DeviceContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.span`
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-`;
-
-const Value = styled.span`
-  font-size: 1.2rem;
-  color: #333;
-`;
-
-const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 35px;
-  width: 100px;
-`;
+// Mock data
+const tablets = [
+  3127, 2391, 1987, 1613, 1017, 823, 712, 611, 509, 403, 307, 190,
+]; // Total: 11481
+const smartphones = [
+  2037, 1523, 1217, 911, 813, 709, 611, 517, 409, 307, 211, 135,
+]; // Total: 6491
+const desktops = [1523, 1217, 987, 813, 709, 611, 517, 409, 307, 211, 135, 82]; // Total: 4712
+const laptops = [1591, 1273, 1017, 823, 709, 611, 517, 409, 307, 211, 135, 82]; // Total: 3918
+const other = [223, 187, 153, 127, 109, 91, 77, 65, 53, 41, 29, 16]; // Total: 543
+const totalOther = 543;
+const users = [
+  13481, 8491, 6712, 5918, 5543, 5172, 4801, 4430, 4059, 3688, 3317, 2946,
+];
 
 const DeviceTotals = () => {
   const [totalDevices, setTotalDevices] = useState(0);

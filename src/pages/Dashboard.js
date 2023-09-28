@@ -33,7 +33,7 @@ const TopDiv = styled.div`
 `;
 
 const MainDiv = styled.div`
-  margin: 1rem;
+  
   padding-top: 8rem;
   background-color: ${theme.colors.complementary2};
 `;

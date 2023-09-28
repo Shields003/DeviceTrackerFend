@@ -10,10 +10,10 @@ const StatusBox = styled.div`
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
-  min-width: 13vw;
-  max-width: 15vw;
-  min-height: 17vh;
-  max-height: 18vh;
+  width: 12vw;
+  max-width: 12vw;
+  height: 17vh;
+  max-height: 17vh;
 `;
 
 const Title = styled.h1`
@@ -211,7 +211,7 @@ const DeviceQuarantined = () => {
 
   return (
     <StatusBox>
-      <Title>Quarantined Devices</Title>
+      <Title>Quarantined</Title>
       <SubTitle>Quarantined: {totalQuarantined}</SubTitle>
       <div onClick={openModal}>
         <ButtonContainer>

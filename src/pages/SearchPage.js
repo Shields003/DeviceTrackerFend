@@ -9,6 +9,8 @@ import SearchFilterUnit from "../components/searchPageComponents/filters/searchF
 import SearchFilterStatus from "../components/searchPageComponents/filters/searchFilterStatus";
 import SearchFilterType from "../components/searchPageComponents/filters/searchFilterType";
 import FooterWithDate from "../components/footer/footerWithDate";
+import SearchResults from "../components/searchPageComponents/results/searchResults";
+import GetTotalArray from "../components/searchPageComponents/results/getTotalArray";
 
 //Styled components
 const theme = {
@@ -45,6 +47,11 @@ const PageTitle = styled.h1`
   color: ${theme.colors.primary};
 `;
 
+const SearchBarDiv = styled.div`
+  margin-bottom: -10px;
+  padding-right: 20px;
+`;
+
 const SearchRow = styled.div`
   display: flex;
   align-items: center;
@@ -55,12 +62,10 @@ const SearchRow = styled.div`
 `;
 
 const SearchResultsDiv = styled.div`
-  width: 100%;
-  max-width: 800px;
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  color: ${theme.colors.primary};
 `;
 
 const glow = keyframes`
@@ -80,9 +85,21 @@ const Divider = styled.hr`
   border-top: 3px solid ${theme.colors.primary};
   border-radius: 8px;
   width: 52%;
-  z-index: 1000;
+
   animation: ${glow} 5s infinite;
 `;
+
+const searchResults = [
+  { id: 1, name: "Device 1", type: "Type A", status: "Active", unit: "Unit 1" },
+  {
+    id: 2,
+    name: "Device 2",
+    type: "Type B",
+    status: "Inactive",
+    unit: "Unit 2",
+  },
+  // ... other results
+];
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -118,11 +135,13 @@ const SearchPage = () => {
       <MainDiv>
         <PageTitle>Device Database</PageTitle>
         <SearchRow>
-          <SearchBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            handleSearch={handleSearch}
-          />
+          <SearchBarDiv>
+            <SearchBar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              handleSearch={handleSearch}
+            />
+          </SearchBarDiv>
           <SearchFilterStatus
             filterOption={filterOption}
             handleFilterChange={handleFilterChange}
@@ -137,13 +156,12 @@ const SearchPage = () => {
           />
         </SearchRow>
         <Divider />
+        <GetTotalArray />
         {/* Render search results here */}
-        {searchTerm && (
-          <SearchResultsDiv>
-            {/* Render search results based on searchTerm and filterOption */}
-          </SearchResultsDiv>
-        )}
-        {!searchTerm && <p>Enter a search to see results below!</p>}
+        {!searchTerm && <p></p>}
+        <SearchResultsDiv>
+          <SearchResults />
+        </SearchResultsDiv>
         <FooterWithDate />
       </MainDiv>
     </TopDiv>

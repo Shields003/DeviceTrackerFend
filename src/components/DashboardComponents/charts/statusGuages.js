@@ -18,18 +18,18 @@ const theme = {
 
 const ChartContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between; 
   align-items: center;
   height: 360px;
   width: 670px;
   position: relative;
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
+
 `;
 
 const StyledChart = styled(Chart)`
-  position: absolute;
-  margin-top: 1.2em;
+  margin: 5px;
 `;
 
 const Title = styled.h2`
@@ -43,39 +43,6 @@ const Title = styled.h2`
   color: ${theme.colors.primary};
 `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #fca311;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: #e76f51;
-  }
-
-  &:active {
-    background-color: #e76f51;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-`;
-
 const ExpandButton = styled.button`
   position: absolute;
   bottom: 10px;
@@ -87,7 +54,7 @@ const ExpandButton = styled.button`
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
-    color: ${theme.colors.accent2};
+    color: ${theme.colors.accent};
   }
   &:active {
     color: ${theme.colors.alert};
@@ -97,15 +64,68 @@ const ExpandButton = styled.button`
 const getRandomNumber = () => {
   return Math.random() * 100;
 };
+const getRandomNumber2 = () => {
+  return Math.random() * 35;
+};
+const getRandomNumber3 = () => {
+  return Math.random() * 25;
+};
 
 //This is a function that returns an array of arrays
 const getData = () => {
   return [
     ["Label", "Value"],
     ["Compliant", getRandomNumber()],
-    ["Out-of-Date", getRandomNumber()],
-    ["Quarantined", getRandomNumber()],
+    ["Out-of-Date", getRandomNumber2()],
+    ["Quarantined", getRandomNumber3()],
   ];
+};
+const CompliantGauge = () => {
+  const data = [
+    ["Label", "Value"],
+    ["Compliant", getRandomNumber()],
+  ];
+
+  return (
+    <StyledChart
+      chartType="Gauge"
+      width="200px"
+      data={data}
+      options={options}
+    />
+  );
+};
+
+const OutOfDateGauge = () => {
+  const data = [
+    ["Label", "Value"],
+    ["Out-of-Date", getRandomNumber2()],
+  ];
+
+  return (
+    <StyledChart
+      chartType="Gauge"
+      width="200px"
+      data={data}
+      options={options}
+    />
+  );
+};
+
+const QuarantinedGauge = () => {
+  const data = [
+    ["Label", "Value"],
+    ["Quarantined", getRandomNumber3()],
+  ];
+
+  return (
+    <StyledChart
+      chartType="Gauge"
+      width="210px"
+      data={data}
+      options={options}
+    />
+  );
 };
 
 const options = {
@@ -137,15 +157,10 @@ export default function Gauges() {
       <ExpandButton>
         <FaExpandAlt />
       </ExpandButton>
-      <StyledChart
-        chartType="Gauge"
-        width="600px"
-        data={data}
-        options={options}
-      />
-      {/* <ButtonContainer>
-        <CloseButton>Close</CloseButton>
-      </ButtonContainer> */}
+
+      <CompliantGauge />
+      <OutOfDateGauge />
+      <QuarantinedGauge />
     </ChartContainer>
   );
 }

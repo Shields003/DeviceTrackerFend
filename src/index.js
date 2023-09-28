@@ -3,25 +3,11 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import Navigation from "./navigation/navigation";
-import axios from "axios";
-import styled from "@emotion/styled";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-// Auth0
+import "gridjs/dist/theme/mermaid.css";
+// Authentication
 import Auth0ProviderWithHistory from "./auth/auth0ProviderWithHistory";
 // Local Imports
-import Dashboard from "./pages/dashboard";
-import SearchPage from "./pages/searchPage";
-import HomePage from "./pages/homePage";
-import LoginPage from "./pages/loginPage/loginPage";
-import SettingsPage from "./pages/settingsPage";
 import AppRoutes from "./navigation/appRoutes";
-
-const Body = styled.body`
-  margin: 0;
-  padding: 0;
-`;
-
-const cors = require("cors");
 
 const theme = {
   colors: {
@@ -50,28 +36,6 @@ ReactDOM.render(
       <Auth0ProviderWithHistory>
         <Navigation />
         <AppRoutes />
-        {/* <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route
-            path="/search"
-            element={withAuthenticationRequired(SearchPage, {
-              onRedirecting: () => <Loading>Loading...</Loading>,
-            })}
-          />
-          <Route
-            path="/dashboard"
-            element={withAuthenticationRequired(Dashboard, {
-              onRedirecting: () => <Loading />,
-            })}
-          />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/settings"
-            element={withAuthenticationRequired(SettingsPage, {
-              onRedirecting: () => <Loading>Loading...</Loading>,
-            })}
-          /> */}
-        {/* </Routes> */}
       </Auth0ProviderWithHistory>
     </Router>
   </ThemeProvider>,

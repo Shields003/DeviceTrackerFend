@@ -22,52 +22,29 @@ const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  font-family: optima, sans-serif;
   position: fixed;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
-  left: 0;
-  right: 0;
-  height: 75px;
-  padding-left: 7em;
-  border-top: 2px solid white;
+  height: 60px;
+  border-top: 1px solid white;
+
 `;
 
 const FooterText = styled.div`
+  margin: 5px;
   text-align: center;
-  font-size: 1.2rem;
 `;
 
-const RefreshButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  background-color: ${({ theme }) => theme.colors.complementary2};
-  color: ${({ theme }) => theme.colors.primary};
-  border: 2px solid ${({ theme }) => theme.colors.text};
-  border-radius: 5px;
-  padding: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.accent2};
-    color: ${({ theme }) => theme.colors.text};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors.alert};
-    color: ${({ theme }) => theme.colors.text};
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
-  }
+const FooterTextCenter = styled.div`
+  margin-left: 55px;
+  text-align: center;
 `;
 
 const FooterWithDate = () => {
   const [date, setDate] = useState(new Date());
-  const [lastRefresh, setLastRefresh] = useState(new Date());
+  // const [lastRefresh, setLastRefresh] = useState(new Date());
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -78,10 +55,7 @@ const FooterWithDate = () => {
     };
   }, []);
 
-  const refreshPage = () => {
-    setLastRefresh(new Date());
-    window.location.reload(false);
-  };
+  
 
   const getOS = () => {
     const platform = window.navigator.platform;
@@ -95,9 +69,8 @@ const FooterWithDate = () => {
   return (
     <FooterContainer>
       <FooterText>Date: {date.toLocaleDateString()}</FooterText>
-      <FooterText>Time: {date.toLocaleTimeString()}</FooterText>
-      <RefreshButton onClick={refreshPage}>Refresh</RefreshButton>
-      <FooterText>Last Refresh: {lastRefresh.toLocaleTimeString()}</FooterText>
+      <FooterTextCenter>Time: {date.toLocaleTimeString()}</FooterTextCenter>
+      {/* <FooterText>Last Refresh: {lastRefresh.toLocaleTimeString()}</FooterText> */}
       <FooterText>Current OS: {getOS()}</FooterText>
     </FooterContainer>
   );

@@ -1,0 +1,84 @@
+/* ModalStyles.css */
+.modalContent {
+  width: 50vw; /* Adjust the width of the modal */
+  min-height: 50vh;
+  margin: auto; /* Center the modal content */
+  padding: 25px;
+  margin-top: 15rem;
+  background-color: #d7d6d6;
+  border-radius: 10px;
+  font-size: 100%;
+  border: 2px solid #284b63; /* Add a border */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  text-decoration: underline #284b63;
+}
+
+.modalTitle {
+  font-size: 1.5em;
+  color: #284b63;
+  margin: 0;
+  align-items: center;
+}
+
+.closeButton {
+  position: relative;
+  color: white;
+  background: rgb(160, 160, 160);
+  border: 1pt solid #284b63;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-family: "Times New Roman";
+  cursor: pointer;
+  text-decoration: underline rgb(160, 160, 160);
+}
+
+.editButton {
+  align-content: center;
+  justify-content: flex;
+  color: white;
+  background: rgb(160, 160, 160);
+  border: 1pt solid #284b63;
+  border-radius: 5px;
+  margin-top: 2em;
+  font-size: 1.2em;
+  font-family: "Times New Roman";
+  cursor: pointer;
+  text-decoration: underline rgb(160, 160, 160);
+}
+
+.modealEdit {
+  align-content: center;
+  justify-content: flex;
+  margin: 0px auto;
+}
+
+.dataSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equally sized columns */
+  gap: 10px 20px;
+  align-items: center; /* Center align items vertically */
+}
+
+.dataLabel {
+  font-weight: bold;
+  color: #3c6e71;
+  grid-column: 1; /* Force labels to be in the first column */
+  width: 150px;
+}
+
+.dataValue {
+  color: #353535;
+  background-color: rgb(240, 243, 245);
+  grid-column: 2; /* Force values to be in the second column */
+  border: 0.5pt solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+}

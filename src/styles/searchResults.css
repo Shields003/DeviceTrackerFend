@@ -1,0 +1,55 @@
+
+
+table {
+  border: 3px solid #284b63;
+  width: 85vw;
+  max-width: 85vw;
+  max-height: 60vh;
+}
+
+th {
+  font-size: 120%;
+  color: white;
+  padding: 1em;
+  background-color: #284b63;
+  height: 30px; /* You might want to adjust this if you feel header height is too small */
+}
+
+td {
+  text-align: center;
+  vertical-align: top; /* Aligns content to the top of the cell */
+  white-space: nowrap; /* Prevents the content from wrapping */
+  overflow: hidden; /* Hides overflow content */
+}
+
+tr {
+  height: 30px;
+  transition: background-color 0.3s ease;
+}
+
+tr:hover {
+  background-color: #fca311; /* This will give a light gray background on hover */
+}
+
+tr:nth-child(even) {
+  background-color: rgb(255, 255, 255);
+}
+tr:nth-child(even):hover {
+  background-color: #fca311;
+}
+
+.App table tr {
+  height: 30px;
+}
+
+
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+
+.array div {
+ text-decoration: line-through;
+ background-color: red;
+}

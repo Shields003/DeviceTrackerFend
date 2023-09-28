@@ -33,14 +33,6 @@ const ChartContainer = styled.div`
   overflow: hidden;
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-`;
-
 const StyledChart = styled(Chart)`
   width: 90%;
   height: 90%;
@@ -71,13 +63,6 @@ const ExpandButton = styled.button`
     color: ${theme.colors.alert};
 `;
 
-const ChartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 const CloseButton = styled.button`
   position: absolute;
   bottom: 20px;
@@ -103,15 +88,6 @@ const CloseButton = styled.button`
     outline: none;
     box-shadow: 0px 0px 0px 3px rgba(252, 163, 17, 0.4);
   }
-`;
-
-const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  position: relative;
-  zindex: 1000;
 `;
 
 const StyledChartModal = styled(Chart)`
