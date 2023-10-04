@@ -11,7 +11,7 @@ const theme = {
     complementary1: "#3c6e71",
     complementary2: "#d9d9d9",
     accent: "#1985a1",
-    accent2: "#fca311",
+    accent2: "#f59311",
     dark: "#353535",
     text: "#ffffff",
     alert: "#eb5e28",

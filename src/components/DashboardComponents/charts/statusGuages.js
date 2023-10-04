@@ -9,7 +9,7 @@ const theme = {
     complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
     complementary2: "#d9d9d9", // complementary color 2 (gray)
     accent: "#1985a1", // accent color (blue/green)
-    accent2: "#fca311", // accent color 2 (orange)
+    accent2: "#f59311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
     alert: "#eb5e28", // alert color (orange/red)
@@ -25,7 +25,6 @@ const ChartContainer = styled.div`
   position: relative;
   background-color: white;
   border-radius: 8px;
-
 `;
 
 const StyledChart = styled(Chart)`
@@ -54,7 +53,7 @@ const ExpandButton = styled.button`
   font-size: 1.5rem;
   zIndex: 5;
   &:hover {
-    color: ${theme.colors.accent};
+    color: ${theme.colors.accent2};
   }
   &:active {
     color: ${theme.colors.alert};

@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import ModalStyles from "../../../styles/ModalStyles.css";
 import StyledButton from "../../buttons/styledButton";
 import ConfirmModal from "./confirmModal";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 //Styled components
 const theme = {
@@ -16,7 +16,7 @@ const theme = {
     complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
     complementary2: "#d9d9d9", // complementary color 2 (gray)
     accent: "#1985a1", // accent color (blue/green)
-    accent2: "#fca311", // accent color 2 (orange)
+    accent2: "#f59311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
     alert: "#eb5e28", // alert color (orange/red)
@@ -235,6 +235,12 @@ const HistoryRow = styled.tr`
   &:nth-child(even) {
     background-color: ${theme.colors.complementary2};
   }
+  &:nth-child(odd) {
+    background-color: white;
+  }
+  &:hover {
+    background-color: ${theme.colors.accent2};
+  }
 `;
 
 const mockHistoryData = [
@@ -293,13 +299,14 @@ function SearchResults({ allData }) {
   };
 
   const handleDeleteClick = () => {
-    const isConfirmed = window.confirm("Are you sure you want to delete? This change cannot be undone.");
-    
-    if (isConfirmed) {
-        // Call your delete function/logic here.
-    }
-};
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete? This change cannot be undone."
+    );
 
+    if (isConfirmed) {
+      // Call your delete function/logic here.
+    }
+  };
 
   useEffect(() => {
     const indexOfLastRow = currentPage * rowsPerPage;
@@ -466,7 +473,6 @@ function SearchResults({ allData }) {
                 textColor={isEditable ? theme.colors.complementary1 : "white"}
                 border={isEditable ? theme.colors.complementary1 : "red"}
                 onClick={handleEditClick}
-                
               >
                 {isEditable ? "Cancel" : "Edit"}
               </StyledButton>
@@ -481,7 +487,11 @@ function SearchResults({ allData }) {
                 </StyledButton>
               )}
 
-              <StyledButton color={theme.colors.alert} textColor="white" onClick={handleDeleteClick}>
+              <StyledButton
+                color={theme.colors.alert}
+                textColor="white"
+                onClick={handleDeleteClick}
+              >
                 Delete
               </StyledButton>
             </ButtonSection>

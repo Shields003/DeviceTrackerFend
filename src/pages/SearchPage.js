@@ -19,7 +19,7 @@ const theme = {
     complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
     complementary2: "#d9d9d9", // complementary color 2 (gray)
     accent: "#1985a1", // accent color (blue/green)
-    accent2: "#fca311", // accent color 2 (orange)
+    accent2: "#f59311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
     alert: "#eb5e28", // alert color (orange/red)
@@ -75,7 +75,7 @@ const glow = keyframes`
   }
   80% {
     border-color: ${theme.colors.primary};
-    box-shadow: 0 0 5px #fca311, 0 0 2px #fca311, 0 0 5px #fca311, 0 0 5px ${theme.colors.primary};
+    box-shadow: 0 0 5px #f59311, 0 0 2px #f59311, 0 0 5px #f59311, 0 0 5px ${theme.colors.primary};
   }
 `;
 

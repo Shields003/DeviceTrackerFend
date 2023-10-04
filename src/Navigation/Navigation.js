@@ -32,7 +32,7 @@ const NavLink = styled(Link)`
   align-items: center;
   transition: color 0.3s ease;
   &:hover {
-    color: #fca311;
+    color: #f59311;
   }
   &:active {
     color: #eb5e28;
@@ -46,7 +46,7 @@ const RightNav = styled.div`
   font-size: inherit;
   font-style: inherit;
   &:hover {
-    color: "#fca311";
+    color: "#f59311";
   }
 `;
 
@@ -56,7 +56,7 @@ const LeftNav = styled.div`
   font-size: inherit;
   font-style: inherit;
   &:hover {
-    color: "#fca311";
+    color: "#f59311";
   }
 `;
 
@@ -80,7 +80,7 @@ const Button = styled.button`
   align-items: baseline;
   justify-content: center;
   &:hover {
-    color: #fca311;
+    color: #f59311;
   }
   &:active {
     color: #eb5e28;

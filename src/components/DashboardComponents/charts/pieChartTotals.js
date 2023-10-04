@@ -12,7 +12,7 @@ const theme = {
     complementary1: "#3c6e71", // complementary color 1 (dark blue/green)
     complementary2: "#d9d9d9", // complementary color 2 (gray)
     accent: "#1985a1", // accent color (blue/green)
-    accent2: "#fca311", // accent color 2 (orange)
+    accent2: "#f59311", // accent color 2 (orange)
     dark: "#353535", // dark color (dark gray)
     text: "#ffffff", // text color (white)
     alert: "#eb5e28", // alert color (orange/red)
@@ -69,7 +69,7 @@ const CloseButton = styled.button`
   right: 20px;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #fca311;
+  background-color: #f59311;
   border: none;
   border-radius: 8px;
   color: #fff;

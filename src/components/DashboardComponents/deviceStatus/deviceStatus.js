@@ -38,7 +38,7 @@ const ModalTitle = styled.h1`
 const CloseButton = styled.button`
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #fca311;
+  background-color: #f59311;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -90,7 +90,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #fca311;
+    background-color: #f59311;
   }
 
   &:active {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Modal from "react-modal";
-import AppleIcon from "@mui/icons-material/Apple";
 import ReportIcon from '@mui/icons-material/Report';
 import { fetchMaaS360Data } from "../../../backendInterface/maas360Data";
 
@@ -30,7 +29,7 @@ const SubTitle = styled.h2`
 const CloseButton = styled.button`
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #fca311;
+  background-color: #f59311;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -82,7 +81,7 @@ const ButtonStyle = styled.button`
   }
 
   &:hover {
-    background-color: #fca311;
+    background-color: #f59311;
   }
 
   &:active {

@@ -12,8 +12,8 @@ const Button = styled.button`
   color: ${(props) => props.textColor || "initial"};
   border: 2px solid ${(props) => props.color};
   &:hover {
-    background-color: #fca311;
-    border: 2px solid #fca311;
+    background-color: #f59311;
+    border: 2px solid #f59311;
     color: white;
 `;
 

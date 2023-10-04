@@ -56,7 +56,7 @@
 }
 
 .device-list li p.status.inactive {
-  background-color: #bf5e3f;
+  background-color: #bf3f92;
 }
 
 .device-list li p.status.disabled {

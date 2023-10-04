@@ -12,7 +12,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #fca311;
+  background-color: #f59311;
   color: white;
   font-size: 1.2rem;
   padding: 1rem;
