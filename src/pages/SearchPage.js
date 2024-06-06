@@ -36,7 +36,7 @@ const TopDiv = styled.div`
 `;
 
 const MainDiv = styled.div`
-  padding-top: 5rem;
+  padding-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;

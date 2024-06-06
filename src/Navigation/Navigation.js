@@ -140,6 +140,7 @@ const Navigation = () => {
         {isAuthenticated && (
           <NavWrapper>
             <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/roster">Roster</NavLink>
             <NavLink to="/map">Map</NavLink>
             <NavLink to="/search">Database</NavLink>
           </NavWrapper>

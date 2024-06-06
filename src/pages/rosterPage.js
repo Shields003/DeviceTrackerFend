@@ -4,15 +4,17 @@ import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
 import { keyframes } from "@emotion/react";
 
-// Local imports
-import DeviceStatus from "../components/dashboardComponents/deviceStatus/deviceStatus";
-import DeviceTotals from "../components/dashboardComponents/deviceTotals/deviceTotals";
-import DatabaseInfo from "../components/dashboardComponents/databaseInfo/databaseInfo";
-import DeviceQuarantined from "../components/dashboardComponents/quarantinedDevices/deviceQuarantined";
-import PieChartTotals from "../components/dashboardComponents/charts/pieChartTotals";
-import UnitComplianceLineChart from "../components/dashboardComponents/charts/unitComplianceLineChart";
-import Gauges from "../components/dashboardComponents/charts/statusGuages";
+//New local imports here
+import TotalUsers from "../components/rosterComponents/totalUsers";
+import TotalLoses from "../components/rosterComponents/totalLoses";
+import TotalGains from "../components/rosterComponents/totalGains";
+import RosterTable from "../components/rosterComponents/rosterTable";
 import FooterWithDate from "../components/footer/footerWithDate";
+import RosterFilters from "../components/rosterComponents/rosterFilters";
+import RosterHeader from "../components/rosterComponents/rosterHeader";
+import RosterMenu from "../components/rosterComponents/rosterMenu";
+import RosterPrint from "../components/buttons/rosterPrint";
+import RosterSearch from "../components/rosterComponents/rosterSearch";
 
 //Styled components
 const theme = {
@@ -78,29 +80,24 @@ const ChildContainer = styled.div`
   }
 `;
 
-const glow = keyframes`
-  0%, 70% {
-    border-color: ${theme.colors.primary};
-    box-shadow: none;
-  }
-  80% {
-    border-color: ${theme.colors.primary};
-    box-shadow: 0 0 5px #f59311, 0 0 2px #f59311, 0 0 5px #f59311, 0 0 5px ${theme.colors.primary};
-  }
+const RosterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
 `;
 
-const Divider = styled.hr`
-  border: 0;
-  border-top: 3px solid ${theme.colors.primary};
-  border-radius: 8px;
-  width: 60%;
-  margin: 0 auto;
-  z-index: 1000;
-  animation: ${glow} 5s infinite;
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
 `;
 
 //Main component
-const Dashboard = () => {
+const RosterPage = () => {
   const [isPieModalOpen, setIsPieModalOpen] = useState(false);
   const [isLineModalOpen, setIsLineModalOpen] = useState(false);
 
@@ -141,37 +138,29 @@ const Dashboard = () => {
         <PageStyle>
           <ParentContainer>
             <ChildContainer>
-              <DeviceTotals />
+              <TotalUsers />
             </ChildContainer>
             <ChildContainer>
-              <DeviceStatus />
+              <TotalLoses />
             </ChildContainer>
             <ChildContainer>
-              <DeviceQuarantined />
-            </ChildContainer>
-            <ChildContainer>
-              <DatabaseInfo />
+              <TotalGains />
             </ChildContainer>
           </ParentContainer>
         </PageStyle>
-        <Divider />
-        <PageStyle>
-          <ParentContainer>
-            <ChildContainer>
-              <PieChartTotals />
-            </ChildContainer>
-            <ChildContainer>
-              <Gauges />
-            </ChildContainer>
-            <ChildContainer>
-              <UnitComplianceLineChart />
-            </ChildContainer>
-          </ParentContainer>
-        </PageStyle>
+        <FilterContainer>
+          <RosterSearch />
+          <RosterFilters />
+          <RosterMenu />
+          <RosterPrint />
+        </FilterContainer>
+        <RosterContainer>
+          <RosterTable />
+        </RosterContainer>
         <FooterWithDate />
       </MainDiv>
     </TopDiv>
   );
 };
 
-export default Dashboard;
+export default RosterPage;
